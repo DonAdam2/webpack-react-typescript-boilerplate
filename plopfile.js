@@ -10,9 +10,22 @@ const requireField = (fieldName) => {
 	};
 };
 
-const isStoreEntityExist = (entityName) => fs.existsSync(`./src/ts/store/${entityName}`);
+const startsWithUseKeyWord = () => {
+	return (value) => {
+		if (String(value).startsWith('use')) {
+			return true;
+		}
+		return 'Custom hooks should start with use keyword';
+	};
+};
 
-const createQuestion = (type, isReducer) => {
+const isStoreEntityExist = (entityName) =>
+	fs.existsSync(`./${rootDirectory}/ts/store/${entityName}`);
+
+const createQuestion = (type) => {
+	const isReducer = type === 'reducer',
+		isHook = type === 'hook';
+
 	if (isReducer) {
 		return [
 			{
@@ -37,7 +50,7 @@ const createQuestion = (type, isReducer) => {
 			// Prompt to display on command line
 			message: `What is your ${type} name?`,
 			// make sure that name is not empty
-			validate: requireField('name'),
+			validate: isHook ? requireField('name') && startsWithUseKeyWord() : requireField('name'),
 		};
 	}
 };
@@ -211,7 +224,7 @@ module.exports = (plop) => {
 
 	plop.setGenerator('reducer', {
 		description: 'Create a reducer',
-		prompts: createQuestion('reducer', true),
+		prompts: createQuestion('reducer'),
 		actions: function (data) {
 			let actionsList = [
 				{
