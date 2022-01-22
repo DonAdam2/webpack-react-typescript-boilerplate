@@ -1,4 +1,5 @@
-const { isCssModules, rootDirectory } = require('./buildTools/constants');
+const { isCssModules, rootDirectory } = require('./buildTools/constants'),
+	fs = require('fs');
 
 const requireField = (fieldName) => {
 	return (value) => {
@@ -8,6 +9,8 @@ const requireField = (fieldName) => {
 		return true;
 	};
 };
+
+const isStoreEntityExist = (entityName) => fs.existsSync(`./src/ts/store/${entityName}`);
 
 const createQuestion = (type, isReducer) => {
 	if (isReducer) {
@@ -209,49 +212,94 @@ module.exports = (plop) => {
 	plop.setGenerator('reducer', {
 		description: 'Create a reducer',
 		prompts: createQuestion('reducer', true),
-		actions: [
-			{
-				type: 'add',
-				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/actions/{{pascalCase name}}Actions.ts`,
-				templateFile: 'generatorTemplates/reducer/Actions.js.hbs',
-			},
-			{
-				type: 'add',
-				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/reducers/{{pascalCase name}}Reducer.ts`,
-				templateFile: 'generatorTemplates/reducer/Reducer.js.hbs',
-			},
-			{
-				type: 'add',
-				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
-				templateFile: 'generatorTemplates/reducer/Selectors.js.hbs',
-			},
-			{
-				type: 'add',
-				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionTypes.ts`,
-				templateFile: 'generatorTemplates/reducer/ActionTypes.js.hbs',
-			},
-			{
-				type: 'add',
-				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionsInterfaces.ts`,
-				templateFile: 'generatorTemplates/reducer/ActionsInterfaces.js.hbs',
-			},
-			{
-				type: 'add',
-				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ReducersInterfaces.ts`,
-				templateFile: 'generatorTemplates/reducer/ReducersInterfaces.js.hbs',
-			},
-			{
-				type: 'append',
-				path: `${rootDirectory}/ts/store/rootReducer.ts`,
-				pattern: `/* PLOP_INJECT_IMPORT */`,
-				template: `import {{camelCase name}} from './{{camelCase reducerEntity}}/reducers/{{pascalCase name}}Reducer';`,
-			},
-			{
-				type: 'append',
-				path: `${rootDirectory}/ts/store/rootReducer.ts`,
-				pattern: `/* PLOP_INJECT_REDUCER_SLICE */`,
-				template: `{{camelCase name}},`,
-			},
-		],
+		actions: function (data) {
+			let actionsList = [
+				{
+					type: 'add',
+					path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/actions/{{pascalCase name}}Actions.ts`,
+					templateFile: 'generatorTemplates/reducer/Actions.js.hbs',
+				},
+				{
+					type: 'add',
+					path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/reducers/{{pascalCase name}}Reducer.ts`,
+					templateFile: 'generatorTemplates/reducer/Reducer.js.hbs',
+				},
+				{
+					type: 'add',
+					path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
+					templateFile: 'generatorTemplates/reducer/Selectors.js.hbs',
+				},
+				{
+					type: 'append',
+					path: `${rootDirectory}/ts/store/rootReducer.ts`,
+					pattern: `/* PLOP_INJECT_IMPORT */`,
+					template: `import {{camelCase name}} from './{{camelCase reducerEntity}}/reducers/{{pascalCase name}}Reducer';`,
+				},
+				{
+					type: 'append',
+					path: `${rootDirectory}/ts/store/rootReducer.ts`,
+					pattern: `/* PLOP_INJECT_REDUCER_SLICE */`,
+					template: `{{camelCase name}},`,
+				},
+			];
+
+			//if store entity (directory) exists
+			if (isStoreEntityExist(data.reducerEntity)) {
+				actionsList.push(
+					{
+						type: 'append',
+						path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionTypes.ts`,
+						pattern: `/* PLOP_INJECT_ACTION_TYPE */`,
+						template: `TEST_ACTION = '[{{pascalCase name}}] TEST_ACTION',`,
+					},
+					{
+						type: 'append',
+						path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionsInterfaces.ts`,
+						pattern: `/* PLOP_INJECT_ACTION_INTERFACE */`,
+						template: `
+						interface TestAction {
+							type: {{pascalCase reducerEntity}}ActionTypes.TEST_ACTION;
+						}
+						`,
+					},
+					{
+						type: 'append',
+						path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionsInterfaces.ts`,
+						pattern: `/* PLOP_INJECT_ACTION */`,
+						template: `TestAction |`,
+					},
+					{
+						type: 'append',
+						path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ReducersInterfaces.ts`,
+						pattern: `/* PLOP_INJECT_REDUCER_INTERFACE */`,
+						template: `
+						export interface {{pascalCase name}}ReducerInitialState {
+							testString: string;
+						}
+						`,
+					}
+				);
+			} else {
+				actionsList.push(
+					{
+						type: 'add',
+						path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionTypes.ts`,
+						templateFile: 'generatorTemplates/reducer/ActionTypes.js.hbs',
+					},
+					{
+						type: 'add',
+						path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionsInterfaces.ts`,
+						templateFile: 'generatorTemplates/reducer/ActionsInterfaces.js.hbs',
+					},
+					{
+						type: 'add',
+						path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ReducersInterfaces.ts`,
+						templateFile: 'generatorTemplates/reducer/ReducersInterfaces.js.hbs',
+					}
+				);
+			}
+
+			return actionsList;
+		},
 	});
 };
