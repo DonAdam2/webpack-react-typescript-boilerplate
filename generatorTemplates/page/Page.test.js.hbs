@@ -1,0 +1,12 @@
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+//pages
+import {{pascalCase name}}Page from './{{pascalCase name}}Page';
+
+describe('<{{pascalCase name}}Page />', () => {
+    test('renders webpack react boilerplate', () => {
+            render(<{{pascalCase name}}Page />);
+            const title = screen.getByText(/{{camelCase name}}Page/i);
+            expect(title).toBeInTheDocument();
+        });
+});
