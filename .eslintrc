@@ -1,11 +1,24 @@
 {
-	"extends": ["prettier", "plugin:react-hooks/recommended"],
-	"plugins": ["prettier"],
-	"parser": "@babel/eslint-parser",
+	"extends": [
+		"prettier",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:jest/recommended",
+		"plugin:jest/style"
+	],
+	"plugins": [
+		"babel",
+		"react",
+		"jest",
+		"prettier",
+		"@typescript-eslint"
+	],
+	"parser": "@typescript-eslint/parser",
 	"env": {
 		"browser": true,
 		"node": true,
 		"commonjs": true,
+		"jest": true,
 		"es6": true
 	},
 	"parserOptions": {
@@ -23,6 +36,8 @@
 		"import/resolver": "webpack"
 	},
 	"rules": {
-		"prettier/prettier": "error"
+		"prettier/prettier": "error",
+		"@typescript-eslint/no-var-requires": 0,
+		"@typescript-eslint/no-explicit-any": ["off"]
 	}
 }

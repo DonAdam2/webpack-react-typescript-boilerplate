@@ -40,7 +40,7 @@ module.exports = (env, options) => {
 	/*================ finish setup environments variables ===================*/
 
 	return {
-		entry: `${PATHS.src}/index.js`,
+		entry: `${PATHS.src}/index.tsx`,
 		output: {
 			// __dirname is the absolute path to the root directory of our app
 			path: PATHS.outputSrc,
@@ -70,7 +70,7 @@ module.exports = (env, options) => {
 			},
 		},
 		resolve: {
-			extensions: ['*', '.js', '.jsx', '.json'],
+			extensions: ['.js', '.ts', '.tsx', '.json'],
 		},
 		module: {
 			rules: [
@@ -81,6 +81,11 @@ module.exports = (env, options) => {
 						loader: 'babel-loader',
 						options: { cacheDirectory: true },
 					},
+				},
+				{
+					test: /\.(ts|tsx)$/,
+					use: ['ts-loader'],
+					exclude: /node_modules/,
 				},
 				{
 					test: /\.(jpe?g|svg|png|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
@@ -169,7 +174,7 @@ module.exports = (env, options) => {
 		},
 		plugins: [
 			new EsLintPlugin({
-				extensions: ['.js', '.jsx'],
+				extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 			}),
 			new HtmlWebpackPlugin({
 				title,
