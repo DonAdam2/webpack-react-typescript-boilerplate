@@ -1,36 +1,35 @@
-import axios from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const createNewBaseUrl = (url) =>
-    axios.create({
-        baseURL: url,
-    });
+const createNewBaseUrl = (url: string | undefined) =>
+	axios.create({
+		baseURL: url,
+	});
 
 const apiService = createNewBaseUrl(process.env.BASE_URL);
 
-const requestInterceptor = (config) => {
-    return config;
+const requestInterceptor = (config: AxiosRequestConfig) => {
+	return config;
 };
 
-const requestInterceptorError = (error) => {
-    console.log('there is a request error', error);
-    return Promise.reject(error);
+const requestInterceptorError = (error: AxiosError): Promise<AxiosError> => {
+	console.error(`[request error] [${JSON.stringify(error)}]`);
+	return Promise.reject(error);
 };
 
-const responseInterceptor = (response) => {
-    // console.log('response interceptor:', response);
-    return response;
+const responseInterceptor = (response: AxiosResponse) => {
+	// console.info(`[response] [${JSON.stringify(response)}]`);
+	return response;
 };
 
-const responseInterceptorError = (error) => {
-    const errorResponse = error.response;
-    console.log('response interceptor error:', errorResponse);
+const responseInterceptorError = (error: AxiosError): Promise<AxiosError> => {
+	console.error(`[response error] [${JSON.stringify(error)}]`);
 
-    return Promise.reject(error);
+	return Promise.reject(error);
 };
 
-const addInterceptors = (service) => {
-    service.interceptors.request.use(requestInterceptor, requestInterceptorError);
-    service.interceptors.response.use(responseInterceptor, responseInterceptorError);
+const addInterceptors = (axiosInstance: AxiosInstance) => {
+	axiosInstance.interceptors.request.use(requestInterceptor, requestInterceptorError);
+	axiosInstance.interceptors.response.use(responseInterceptor, responseInterceptorError);
 };
 
 addInterceptors(apiService);

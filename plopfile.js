@@ -44,20 +44,20 @@ module.exports = (plop) => {
 		description: 'Create a component',
 		// User input prompts provided as arguments to the template
 		prompts: [createQuestion('component')],
-		actions: function (data) {
+		actions: function () {
 			let actionsList = [
 				{
 					// Add a new file
 					type: 'add',
 					// Path for the new file
-					path: `${rootDirectory}/js/components/{{pascalCase name}}/{{pascalCase name}}.jsx`,
+					path: `${rootDirectory}/ts/components/{{pascalCase name}}/{{pascalCase name}}.tsx`,
 					// Handlebars template used to generate content of new file
 					templateFile: 'generatorTemplates/component/Component.js.hbs',
 					data: { isCssModules },
 				},
 				{
 					type: 'add',
-					path: `${rootDirectory}/js/components/{{pascalCase name}}/{{pascalCase name}}.test.js`,
+					path: `${rootDirectory}/ts/components/{{pascalCase name}}/{{pascalCase name}}.test.tsx`,
 					templateFile: 'generatorTemplates/component/Component.test.js.hbs',
 				},
 			];
@@ -65,7 +65,7 @@ module.exports = (plop) => {
 			if (isCssModules) {
 				actionsList.push({
 					type: 'add',
-					path: `${rootDirectory}/js/components/{{pascalCase name}}/{{pascalCase name}}.scss`,
+					path: `${rootDirectory}/ts/components/{{pascalCase name}}/{{pascalCase name}}.scss`,
 					templateFile: 'generatorTemplates/component/Component.scss.hbs',
 				});
 			} else {
@@ -91,17 +91,17 @@ module.exports = (plop) => {
 	plop.setGenerator('page', {
 		description: 'Create a page',
 		prompts: [createQuestion('page')],
-		actions: function (data) {
+		actions: function () {
 			let actionsList = [
 				{
 					type: 'add',
-					path: `${rootDirectory}/js/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.jsx`,
+					path: `${rootDirectory}/ts/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.tsx`,
 					templateFile: 'generatorTemplates/page/Page.js.hbs',
 					data: { isCssModules },
 				},
 				{
 					type: 'add',
-					path: `${rootDirectory}/js/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.test.js`,
+					path: `${rootDirectory}/ts/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.test.tsx`,
 					templateFile: 'generatorTemplates/page/Page.test.js.hbs',
 				},
 			];
@@ -109,7 +109,7 @@ module.exports = (plop) => {
 			if (isCssModules) {
 				actionsList.push({
 					type: 'add',
-					path: `${rootDirectory}/js/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.scss`,
+					path: `${rootDirectory}/ts/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.scss`,
 					templateFile: 'generatorTemplates/component/Component.scss.hbs',
 				});
 			} else {
@@ -135,17 +135,17 @@ module.exports = (plop) => {
 	plop.setGenerator('container', {
 		description: 'Create a container',
 		prompts: [createQuestion('container')],
-		actions: function (data) {
+		actions: function () {
 			let actionsList = [
 				{
 					type: 'add',
-					path: `${rootDirectory}/js/containers/{{pascalCase name}}/{{pascalCase name}}.jsx`,
+					path: `${rootDirectory}/ts/containers/{{pascalCase name}}/{{pascalCase name}}.tsx`,
 					templateFile: 'generatorTemplates/component/Component.js.hbs',
 					data: { isCssModules },
 				},
 				{
 					type: 'add',
-					path: `${rootDirectory}/js/containers/{{pascalCase name}}/{{pascalCase name}}.test.js`,
+					path: `${rootDirectory}/ts/containers/{{pascalCase name}}/{{pascalCase name}}.test.tsx`,
 					templateFile: 'generatorTemplates/component/Component.test.js.hbs',
 				},
 			];
@@ -153,7 +153,7 @@ module.exports = (plop) => {
 			if (isCssModules) {
 				actionsList.push({
 					type: 'add',
-					path: `${rootDirectory}/js/containers/{{pascalCase name}}/{{pascalCase name}}.scss`,
+					path: `${rootDirectory}/ts/containers/{{pascalCase name}}/{{pascalCase name}}.scss`,
 					templateFile: 'generatorTemplates/component/Component.scss.hbs',
 				});
 			} else {
@@ -182,7 +182,7 @@ module.exports = (plop) => {
 		actions: [
 			{
 				type: 'add',
-				path: `${rootDirectory}/js/customHooks/{{camelCase name}}.js`,
+				path: `${rootDirectory}/ts/customHooks/{{camelCase name}}.ts`,
 				templateFile: 'generatorTemplates/hook.js.hbs',
 			},
 		],
@@ -194,12 +194,12 @@ module.exports = (plop) => {
 		actions: [
 			{
 				type: 'add',
-				path: `${rootDirectory}/js/services/{{pascalCase name}}Service.js`,
+				path: `${rootDirectory}/ts/services/{{pascalCase name}}Service.ts`,
 				templateFile: 'generatorTemplates/service/Service.js.hbs',
 			},
 			{
 				type: 'add',
-				path: `${rootDirectory}/js/services/HttpService.js`,
+				path: `${rootDirectory}/ts/services/HttpService.ts`,
 				templateFile: 'generatorTemplates/service/HttpService.js.hbs',
 				skipIfExists: true,
 			},
@@ -212,33 +212,43 @@ module.exports = (plop) => {
 		actions: [
 			{
 				type: 'add',
-				path: `${rootDirectory}/js/store/{{camelCase reducerEntity}}/actions/{{pascalCase name}}Actions.js`,
+				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/actions/{{pascalCase name}}Actions.ts`,
 				templateFile: 'generatorTemplates/reducer/Actions.js.hbs',
 			},
 			{
 				type: 'add',
-				path: `${rootDirectory}/js/store/{{camelCase reducerEntity}}/reducers/{{pascalCase name}}Reducer.js`,
+				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/reducers/{{pascalCase name}}Reducer.ts`,
 				templateFile: 'generatorTemplates/reducer/Reducer.js.hbs',
 			},
 			{
 				type: 'add',
-				path: `${rootDirectory}/js/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.js`,
+				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
 				templateFile: 'generatorTemplates/reducer/Selectors.js.hbs',
 			},
 			{
 				type: 'add',
-				path: `${rootDirectory}/js/store/{{camelCase reducerEntity}}/{{pascalCase name}}ActionTypes.js`,
+				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionTypes.ts`,
 				templateFile: 'generatorTemplates/reducer/ActionTypes.js.hbs',
 			},
 			{
+				type: 'add',
+				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ActionsInterfaces.ts`,
+				templateFile: 'generatorTemplates/reducer/ActionsInterfaces.js.hbs',
+			},
+			{
+				type: 'add',
+				path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}ReducersInterfaces.ts`,
+				templateFile: 'generatorTemplates/reducer/ReducersInterfaces.js.hbs',
+			},
+			{
 				type: 'append',
-				path: `${rootDirectory}/js/store/rootReducer.js`,
+				path: `${rootDirectory}/ts/store/rootReducer.ts`,
 				pattern: `/* PLOP_INJECT_IMPORT */`,
 				template: `import {{camelCase name}} from './{{camelCase reducerEntity}}/reducers/{{pascalCase name}}Reducer';`,
 			},
 			{
 				type: 'append',
-				path: `${rootDirectory}/js/store/rootReducer.js`,
+				path: `${rootDirectory}/ts/store/rootReducer.ts`,
 				pattern: `/* PLOP_INJECT_REDUCER_SLICE */`,
 				template: `{{camelCase name}},`,
 			},

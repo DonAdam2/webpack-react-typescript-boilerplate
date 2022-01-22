@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
     import classes from './{{pascalCase name}}.scss';
 {{/if}}
 
-const {{pascalCase name}} = (props) => {
+const {{pascalCase name}} = () => {
     return (
         {{#if isCssModules}}
             <div  className={classes.{{camelCase name}}Wrapper}>
