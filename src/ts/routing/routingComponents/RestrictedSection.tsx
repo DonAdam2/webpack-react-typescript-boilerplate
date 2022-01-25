@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 //state
 import { State } from '../../store/rootReducer';
@@ -27,10 +26,6 @@ const RestrictedSection: FC<RestrictedRouteInterface> = ({
 			return <>{children}</>;
 	}
 	return null;
-};
-
-RestrictedSection.propTypes = {
-	requiredPermissions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
 };
 
 export default RestrictedSection;

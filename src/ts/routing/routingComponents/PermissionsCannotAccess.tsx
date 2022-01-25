@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import PropTypes from 'prop-types';
 //interfaces
 import { RestrictedRouteInterface } from '../RoutingInterfaces';
 
@@ -21,9 +20,5 @@ const PermissionsCannotAccess: FC<RestrictedRouteInterface> = ({ requiredPermiss
 		</ul>
 	</div>
 );
-
-PermissionsCannotAccess.propTypes = {
-	requiredPermissions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
-};
 
 export default PermissionsCannotAccess;
