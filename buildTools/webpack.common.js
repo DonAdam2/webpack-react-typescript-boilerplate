@@ -100,6 +100,16 @@ module.exports = (env, options) => {
 							loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 							//if source map is set to true from previous loaders => this loader will be true as well
 						},
+						...(isCssModules
+							? [
+									{
+										loader: 'css-modules-typescript-loader',
+										options: {
+											mode: process.env.CI ? 'verify' : 'emit',
+										},
+									},
+							  ]
+							: []),
 						{
 							//Resolves @import statements
 							loader: 'css-loader',
