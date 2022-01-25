@@ -66,14 +66,14 @@ module.exports = (plop) => {
 					// Add a new file
 					type: 'add',
 					// Path for the new file
-					path: `${rootDirectory}/ts/components/{{pascalCase name}}/{{pascalCase name}}.tsx`,
+					path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.tsx`,
 					// Handlebars template used to generate content of new file
 					templateFile: 'generatorTemplates/component/Component.js.hbs',
 					data: { isCssModules },
 				},
 				{
 					type: 'add',
-					path: `${rootDirectory}/ts/components/{{pascalCase name}}/{{pascalCase name}}.test.tsx`,
+					path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.test.tsx`,
 					templateFile: 'generatorTemplates/component/Component.test.js.hbs',
 				},
 			];
@@ -81,7 +81,7 @@ module.exports = (plop) => {
 			if (isCssModules) {
 				actionsList.push({
 					type: 'add',
-					path: `${rootDirectory}/ts/components/{{pascalCase name}}/{{pascalCase name}}.scss`,
+					path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
 					templateFile: 'generatorTemplates/component/Component.scss.hbs',
 				});
 			} else {
@@ -111,13 +111,13 @@ module.exports = (plop) => {
 			let actionsList = [
 				{
 					type: 'add',
-					path: `${rootDirectory}/ts/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.tsx`,
+					path: `${rootDirectory}/ts/containers/pages/{{camelCase name}}Page/{{pascalCase name}}Page.tsx`,
 					templateFile: 'generatorTemplates/page/Page.js.hbs',
 					data: { isCssModules },
 				},
 				{
 					type: 'add',
-					path: `${rootDirectory}/ts/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.test.tsx`,
+					path: `${rootDirectory}/ts/containers/pages/{{camelCase name}}Page/{{pascalCase name}}Page.test.tsx`,
 					templateFile: 'generatorTemplates/page/Page.test.js.hbs',
 				},
 			];
@@ -125,7 +125,7 @@ module.exports = (plop) => {
 			if (isCssModules) {
 				actionsList.push({
 					type: 'add',
-					path: `${rootDirectory}/ts/containers/pages/{{pascalCase name}}Page/{{pascalCase name}}Page.scss`,
+					path: `${rootDirectory}/ts/containers/pages/{{camelCase name}}Page/{{pascalCase name}}Page.scss`,
 					templateFile: 'generatorTemplates/component/Component.scss.hbs',
 				});
 			} else {
@@ -155,13 +155,13 @@ module.exports = (plop) => {
 			let actionsList = [
 				{
 					type: 'add',
-					path: `${rootDirectory}/ts/containers/{{pascalCase name}}/{{pascalCase name}}.tsx`,
+					path: `${rootDirectory}/ts/containers/{{camelCase name}}/{{pascalCase name}}.tsx`,
 					templateFile: 'generatorTemplates/component/Component.js.hbs',
 					data: { isCssModules },
 				},
 				{
 					type: 'add',
-					path: `${rootDirectory}/ts/containers/{{pascalCase name}}/{{pascalCase name}}.test.tsx`,
+					path: `${rootDirectory}/ts/containers/{{camelCase name}}/{{pascalCase name}}.test.tsx`,
 					templateFile: 'generatorTemplates/component/Component.test.js.hbs',
 				},
 			];
@@ -169,7 +169,7 @@ module.exports = (plop) => {
 			if (isCssModules) {
 				actionsList.push({
 					type: 'add',
-					path: `${rootDirectory}/ts/containers/{{pascalCase name}}/{{pascalCase name}}.scss`,
+					path: `${rootDirectory}/ts/containers/{{camelCase name}}/{{pascalCase name}}.scss`,
 					templateFile: 'generatorTemplates/component/Component.scss.hbs',
 				});
 			} else {
