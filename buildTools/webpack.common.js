@@ -75,7 +75,7 @@ module.exports = (env, options) => {
 		module: {
 			rules: [
 				{
-					test: /\.js|jsx$/,
+					test: /\.js$/,
 					exclude: /node_modules/,
 					use: {
 						loader: 'babel-loader',
@@ -177,7 +177,7 @@ module.exports = (env, options) => {
 		},
 		plugins: [
 			new EsLintPlugin({
-				extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+				extensions: ['.js', '.ts', '.tsx', '.json'],
 			}),
 			new HtmlWebpackPlugin({
 				title,

@@ -50,7 +50,7 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce a cod
   Notes:
 
   - It's better to use the local `node_modules` version of prettier instead of a global one. This is to avoid version conflicts (in case the globally installed version does not match with the versions specified in `package.json`). So when setting up the file watcher when you follow the steps from the above link you can set `program` to `$ProjectFileDir$\node_modules\.bin\prettier` (warning this assumes that node_modules sits in the root of your project. This will need to change if your directory structure changes).
-  - You will have to create two file watchers. One for JSX files and one for JS files. The webpack build tools are already configured to work with `eslint` and `prettier`. The only thing needed is the two file watchers.
+  - You will have to create file watchers for TS, TSX and SCSS files. The webpack build tools are already configured to work with `eslint` and `prettier`. The only thing needed is the file watchers.
 
   2- Follow the next steps to set up **prettier** and **eslint** on **_VS Code_**:
 
