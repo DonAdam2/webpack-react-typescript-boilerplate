@@ -47,7 +47,7 @@ const responseInterceptorError = (error: AxiosError) => {
 	}*/
 
 	// handle internal server error by adding a retry
-	// logic after the given delay for the given time
+	// logic after the given delay for the given retry times
 	/*if (error.response?.status === 500) {
 		const clonedConfig = cloneDeep(error.config) as ExtendedAxiosRequestConfig;
 		let retryTimes;
