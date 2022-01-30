@@ -79,18 +79,11 @@ module.exports = (plop) => {
 			];
 
 			if (isCssModules) {
-				actionsList.push(
-					{
-						type: 'add',
-						path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
-						templateFile: 'generatorTemplates/component/Component.scss.hbs',
-					},
-					{
-						type: 'add',
-						path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss.d.ts`,
-						templateFile: 'generatorTemplates/component/Component.scss.d.ts.hbs',
-					}
-				);
+				actionsList.push({
+					type: 'add',
+					path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
+					templateFile: 'generatorTemplates/component/Component.scss.hbs',
+				});
 			} else {
 				actionsList.push(
 					{
@@ -130,18 +123,11 @@ module.exports = (plop) => {
 			];
 
 			if (isCssModules) {
-				actionsList.push(
-					{
-						type: 'add',
-						path: `${rootDirectory}/ts/containers/pages/{{camelCase name}}Page/{{pascalCase name}}Page.scss`,
-						templateFile: 'generatorTemplates/component/Component.scss.hbs',
-					},
-					{
-						type: 'add',
-						path: `${rootDirectory}/ts/containers/pages/{{camelCase name}}Page/{{pascalCase name}}Page.scss.d.ts`,
-						templateFile: 'generatorTemplates/component/Component.scss.d.ts.hbs',
-					}
-				);
+				actionsList.push({
+					type: 'add',
+					path: `${rootDirectory}/ts/containers/pages/{{camelCase name}}Page/{{pascalCase name}}Page.scss`,
+					templateFile: 'generatorTemplates/component/Component.scss.hbs',
+				});
 			} else {
 				actionsList.push(
 					{
@@ -181,18 +167,11 @@ module.exports = (plop) => {
 			];
 
 			if (isCssModules) {
-				actionsList.push(
-					{
-						type: 'add',
-						path: `${rootDirectory}/ts/containers/{{camelCase name}}/{{pascalCase name}}.scss`,
-						templateFile: 'generatorTemplates/component/Component.scss.hbs',
-					},
-					{
-						type: 'add',
-						path: `${rootDirectory}/ts/containers/{{camelCase name}}/{{pascalCase name}}.scss.d.ts`,
-						templateFile: 'generatorTemplates/component/Component.scss.d.ts.hbs',
-					}
-				);
+				actionsList.push({
+					type: 'add',
+					path: `${rootDirectory}/ts/containers/{{camelCase name}}/{{pascalCase name}}.scss`,
+					templateFile: 'generatorTemplates/component/Component.scss.hbs',
+				});
 			} else {
 				actionsList.push(
 					{
