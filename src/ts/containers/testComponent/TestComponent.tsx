@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //selectors
-import { getTestAction } from '../store/app/selectors/AppSelectors';
+import { getTestAction } from '@/ts/store/app/selectors/AppSelectors';
 //actions
-import { setTestAction } from '../store/app/actions/AppActions';
+import { setTestAction } from '@/ts/store/app/actions/AppActions';
 //state
-import { State } from '../store/rootReducer';
+import { State } from '@/ts/store/rootReducer';
 
-const TestComponent = () => {
+const TestComponent: FC = () => {
 	const dispatch = useDispatch(),
 		testAction = useSelector((state: State) => getTestAction(state));
 
@@ -19,7 +19,9 @@ const TestComponent = () => {
 			<p>
 				Testing the store <strong>{testAction}</strong>
 			</p>
-			<button onClick={() => dispatch(setTestAction())}>Change text</button>
+			<button onClick={() => dispatch(setTestAction())} data-testid="changeText">
+				Change text
+			</button>
 		</div>
 	);
 };
