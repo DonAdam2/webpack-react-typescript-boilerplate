@@ -71,6 +71,13 @@ module.exports = (env, options) => {
 		},
 		resolve: {
 			extensions: ['.js', '.ts', '.tsx', '.json'],
+			// declaring alias for reducing the use of relative path
+			alias: {
+				'@/ts': `${PATHS.src}/ts`,
+				'@/scss': `${PATHS.src}/scss`,
+				'@/img': `${PATHS.src}/assets/images`,
+				'@/jest': PATHS.jest,
+			},
 		},
 		module: {
 			rules: [
