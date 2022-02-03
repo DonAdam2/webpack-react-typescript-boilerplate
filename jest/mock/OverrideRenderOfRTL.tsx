@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { render as rtlRender } from '@testing-library/react';
 // store
 import store from '@/jest/mock/store';
-import { Store } from 'redux';
 
 function render(ui: ReactElement, { mockStore = store, locale = 'en', ...renderOptions } = {}) {
 	const Wrapper: FC = ({ children }) => (
