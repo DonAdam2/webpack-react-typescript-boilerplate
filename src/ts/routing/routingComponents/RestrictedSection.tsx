@@ -9,23 +9,23 @@ import { getAppUserPermissionsList } from '../../store/app/selectors/AppSelector
 import { RestrictedRouteInterface } from '../RoutingInterfaces';
 
 const RestrictedSection: FC<RestrictedRouteInterface> = ({
-	requiredPermissions,
-	children,
+  requiredPermissions,
+  children,
 }): JSX.Element | null => {
-	const userPermissionsList = useSelector((state: State) => getAppUserPermissionsList(state));
+  const userPermissionsList = useSelector((state: State) => getAppUserPermissionsList(state));
 
-	if (Array.isArray(requiredPermissions)) {
-		for (let i = 0; i < requiredPermissions.length; i++) {
-			for (let j = 0; j < userPermissionsList.length; j++) {
-				if (requiredPermissions[i] === userPermissionsList[j]) return <>{children}</>;
-			}
-		}
-	}
-	if (typeof requiredPermissions === 'string') {
-		if (userPermissionsList.findIndex((permission) => permission === requiredPermissions) > -1)
-			return <>{children}</>;
-	}
-	return null;
+  if (Array.isArray(requiredPermissions)) {
+    for (let i = 0; i < requiredPermissions.length; i++) {
+      for (let j = 0; j < userPermissionsList.length; j++) {
+        if (requiredPermissions[i] === userPermissionsList[j]) return <>{children}</>;
+      }
+    }
+  }
+  if (typeof requiredPermissions === 'string') {
+    if (userPermissionsList.findIndex((permission) => permission === requiredPermissions) > -1)
+      return <>{children}</>;
+  }
+  return null;
 };
 
 export default RestrictedSection;

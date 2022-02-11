@@ -4,5 +4,5 @@ import { AppActionTypes } from '../AppActionTypes';
 import { Action } from '../AppActionsInterfaces';
 
 export const setTestAction = (): Action => ({
-	type: AppActionTypes.TEST_ACTION,
+  type: AppActionTypes.TEST_ACTION,
 });

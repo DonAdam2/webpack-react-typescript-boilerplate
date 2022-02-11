@@ -1,3 +1,3 @@
 export interface RestrictedRouteInterface {
-	requiredPermissions: string[] | string;
+  requiredPermissions: string[] | string;
 }

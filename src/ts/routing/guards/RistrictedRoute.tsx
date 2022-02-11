@@ -17,28 +17,28 @@ import { RestrictedRouteInterface } from '../RoutingInterfaces';
 import PermissionsCannotAccess from '../routingComponents/PermissionsCannotAccess';
 
 const RestrictedRoute: FC<RestrictedRouteInterface> = ({
-	children,
-	requiredPermissions,
+  children,
+  requiredPermissions,
 }): JSX.Element => {
-	const userPermissionsList = useSelector((state: State) => getAppUserPermissionsList(state)),
-		location = useLocation();
+  const userPermissionsList = useSelector((state: State) => getAppUserPermissionsList(state)),
+    location = useLocation();
 
-	if (LocalStorageManager.getItem('token')) {
-		if (Array.isArray(requiredPermissions)) {
-			for (let i = 0; i < requiredPermissions.length; i++) {
-				for (let j = 0; j < userPermissionsList.length; j++) {
-					if (requiredPermissions[i] === userPermissionsList[j]) return <>{children}</>;
-				}
-			}
-		}
-		if (typeof requiredPermissions === 'string') {
-			if (userPermissionsList.findIndex((permission) => permission === requiredPermissions) > -1)
-				return <>{children}</>;
-		}
-		return <PermissionsCannotAccess requiredPermissions={requiredPermissions} />;
-	} else {
-		return <Navigate replace to={getLoginPageUrl()} state={{ from: location }} />;
-	}
+  if (LocalStorageManager.getItem('token')) {
+    if (Array.isArray(requiredPermissions)) {
+      for (let i = 0; i < requiredPermissions.length; i++) {
+        for (let j = 0; j < userPermissionsList.length; j++) {
+          if (requiredPermissions[i] === userPermissionsList[j]) return <>{children}</>;
+        }
+      }
+    }
+    if (typeof requiredPermissions === 'string') {
+      if (userPermissionsList.findIndex((permission) => permission === requiredPermissions) > -1)
+        return <>{children}</>;
+    }
+    return <PermissionsCannotAccess requiredPermissions={requiredPermissions} />;
+  } else {
+    return <Navigate replace to={getLoginPageUrl()} state={{ from: location }} />;
+  }
 };
 
 export default RestrictedRoute;

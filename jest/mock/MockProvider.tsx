@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 interface MockProviderInterface {
-	mockStore?: Store;
+  mockStore?: Store;
 }
 
 const MockProvider: FC<MockProviderInterface> = ({ children, mockStore = store }) => (
-	<Provider store={mockStore}>{children}</Provider>
+  <Provider store={mockStore}>{children}</Provider>
 );
 
 export default MockProvider;

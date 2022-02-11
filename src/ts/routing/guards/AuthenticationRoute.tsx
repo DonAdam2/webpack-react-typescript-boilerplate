@@ -7,11 +7,11 @@ import { getHomePageUrl } from '../routingConstants/AppUrls';
 
 //used to load authentication routes (ex: login, signup, ...etc)
 const AuthenticationRoute: FC = ({ children }): JSX.Element => {
-	if (!LocalStorageManager.getItem('token')) {
-		return <>{children}</>;
-	}
+  if (!LocalStorageManager.getItem('token')) {
+    return <>{children}</>;
+  }
 
-	return <Navigate replace to={getHomePageUrl()} />;
+  return <Navigate replace to={getHomePageUrl()} />;
 };
 
 export default AuthenticationRoute;
