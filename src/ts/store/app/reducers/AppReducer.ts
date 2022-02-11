@@ -1,7 +1,7 @@
 //action types
 import { AppActionTypes } from '../AppActionTypes';
 //constants
-import { updateObject } from '../../../constants/Helpers';
+import { updateObject } from '@/ts/constants/Helpers';
 //interfaces
 import { Action } from '../AppActionsInterfaces';
 import { AppReducerInitialState } from '../AppReducersInterfaces';
