@@ -1,4 +1,3 @@
-import React from 'react';
 {{#if isCssModules}}
     //styles
     import classes from './{{pascalCase name}}.scss';
@@ -9,7 +8,7 @@ const {{pascalCase name}} = () => {
         {{#if isCssModules}}
             <div  className={classes.{{camelCase name}}Wrapper}>
         {{else}}
-            <div  className="{{camelCase name}}-wrapper">
+            <div  className="{{dashCase name}}-wrapper">
         {{/if}}
             {{pascalCase name}}
         </div>
