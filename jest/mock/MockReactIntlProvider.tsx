@@ -1,3 +1,4 @@
+/*
 import React, { FC } from 'react';
 import { IntlProvider } from 'react-intl';
 
@@ -10,3 +11,5 @@ const MockReactIntlProvider: FC<MockReactIntlProviderInterface> = ({ children, l
 );
 
 export default MockReactIntlProvider;
+*/
+export {};
