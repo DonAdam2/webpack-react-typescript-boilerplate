@@ -1,4 +1,3 @@
-import React from 'react';
 import { Store } from 'redux';
 // react testing library
 // import { cleanup, render, screen, fireEvent } from '@testing-library/react';

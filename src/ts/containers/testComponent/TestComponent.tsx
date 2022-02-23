@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //selectors
 import { getTestAction } from '@/ts/store/app/selectors/AppSelectors';
