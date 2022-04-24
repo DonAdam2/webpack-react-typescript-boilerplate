@@ -45,10 +45,10 @@ module.exports = {
   collectCoverageFrom: [
     `../${rootDirectory}/**/*.{js,jsx,ts,tsx}`,
     `!../${rootDirectory}/**/*.d.ts`,
-    `!../${rootDirectory}/js/store/**/*.{js,ts}`,
-    `!../${rootDirectory}/js/services/**/*.{js,ts}`,
-    `!../${rootDirectory}/js/managers/**/*.{js,ts}`,
-    `!../${rootDirectory}/js/constants/**/*.{js,ts}`,
+    `!../${rootDirectory}/ts/store/**/*.{js,ts}`,
+    `!../${rootDirectory}/ts/services/**/*.{js,ts}`,
+    `!../${rootDirectory}/ts/managers/**/*.{js,ts}`,
+    `!../${rootDirectory}/ts/constants/**/*.{js,ts}`,
   ],
   coverageThreshold: {
     global: {
