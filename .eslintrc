@@ -4,12 +4,16 @@
 		"plugin:@typescript-eslint/recommended",
 		"plugin:react-hooks/recommended",
 		"plugin:jest/recommended",
-		"plugin:jest/style"
+		"plugin:jest/style",
+		"plugin:testing-library/react",
+		"plugin:jest-dom/recommended"
 	],
 	"plugins": [
 		"babel",
 		"react",
 		"jest",
+		"testing-library",
+		"jest-dom",
 		"prettier",
 		"@typescript-eslint"
 	],
