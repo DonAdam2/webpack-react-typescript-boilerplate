@@ -8,8 +8,8 @@ interface MockProviderInterface {
   mockStore?: Store;
 }
 
-const MockProvider: FC<MockProviderInterface> = ({ children, mockStore = store }) => (
+const MockReduxProvider: FC<MockProviderInterface> = ({ children, mockStore = store }) => (
   <Provider store={mockStore}>{children}</Provider>
 );
 
-export default MockProvider;
+export default MockReduxProvider;
