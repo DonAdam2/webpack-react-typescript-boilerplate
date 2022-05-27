@@ -2,7 +2,7 @@ import { Store } from 'redux';
 // react testing library
 // import { cleanup, render, screen, fireEvent } from '@testing-library/react';
 // all providers mock
-import { cleanup, render, screen, fireEvent } from '@/jest/mocks/OverrideRenderOfRTL';
+import { render, screen, fireEvent } from '@/jest/mocks/OverrideRenderOfRTL';
 // snapshots renderer
 import renderer from 'react-test-renderer';
 // mock store provider
@@ -11,8 +11,6 @@ import MockReduxProvider from '@/jest/mocks/MockReduxProvider';
 import createMockStore from '@/jest/mocks/store/createMockStore';
 //components
 import TestComponent from './TestComponent';
-
-afterEach(cleanup);
 
 describe('testComponent.jsx', () => {
   it('snapshot renders correctly, truthy values', () => {
