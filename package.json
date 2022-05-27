@@ -1,10 +1,14 @@
 {
-  "name": "webpack-react-boilerplate",
+  "name": "webpack-react-typescript-boilerplate",
   "version": "1.0.0",
   "engines": {
     "node": ">=14.17.0"
   },
-  "description": "Webpack react boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-custom-projects/webpack-react-typescript-boilerplate"
+  },
+  "description": "Webpack react boilerplate with typescript",
   "main": "index.js",
   "browserslist": [
     "ie >= 11",
