@@ -1,7 +1,7 @@
-//component
-import App from './App';
 // all providers mock
 import { render, screen } from '@/jest/mocks/OverrideRenderOfRTL';
+//component
+import App from './App';
 
 describe('App Component', () => {
   test('renders webpack react boilerplate', async () => {
