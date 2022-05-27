@@ -19,9 +19,7 @@ const TestComponent: FC = () => {
       <p>
         Testing the store <strong>{testAction}</strong>
       </p>
-      <button onClick={() => dispatch(setTestAction())} data-testid="changeText">
-        Change text
-      </button>
+      <button onClick={() => dispatch(setTestAction())}>Change text</button>
     </div>
   );
 };

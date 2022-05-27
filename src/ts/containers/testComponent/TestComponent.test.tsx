@@ -39,7 +39,7 @@ describe('testComponent.jsx', () => {
 		);*/
     //using the custom render with all providers
     render(<TestComponent />, { mockStore: store });
-    fireEvent.click(screen.getByTestId('changeText'));
+    fireEvent.click(screen.getByRole('button', { name: /change text/i }));
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 });
