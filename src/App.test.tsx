@@ -2,7 +2,7 @@ import { render, screen, cleanup } from '@testing-library/react';
 //component
 import App from './App';
 // mock store provider
-import MockProvider from '@/jest/mock/MockProvider';
+import MockProvider from '@/jest/mocks/MockProvider';
 
 afterEach(cleanup);
 

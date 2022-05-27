@@ -2,13 +2,13 @@ import { Store } from 'redux';
 // react testing library
 // import { cleanup, render, screen, fireEvent } from '@testing-library/react';
 // all providers mock
-import { cleanup, render, screen, fireEvent } from '@/jest/mock/OverrideRenderOfRTL';
+import { cleanup, render, screen, fireEvent } from '@/jest/mocks/OverrideRenderOfRTL';
 // snapshots renderer
 import renderer from 'react-test-renderer';
 // mock store provider
-import MockProvider from '@/jest/mock/MockProvider';
-// mock store
-import createMockStore from '@/jest/mock/store/createMockStore';
+import MockProvider from '@/jest/mocks/MockProvider';
+// create mock store
+import createMockStore from '@/jest/mocks/store/createMockStore';
 //components
 import TestComponent from './TestComponent';
 
