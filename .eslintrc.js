@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   extends: [
+    'eslint:recommended',
     'prettier',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
