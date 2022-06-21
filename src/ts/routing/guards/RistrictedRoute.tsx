@@ -4,10 +4,10 @@ import { Navigate, useLocation } from 'react-router-dom';
 //managers
 import LocalStorageManager from '../../managers/LocalStorageManger';
 //state
-import { State } from '../../store/rootReducer';
+import { State } from '@/ts/store/rootReducer';
 //selectors
 //replace the following with your own selector
-import { getAppUserPermissionsList } from '../../store/app/selectors/AppSelectors';
+import { getAppUserPermissionsList } from '@/ts/store/app/selectors/AppSelectors';
 //routes
 //replace the following with your own url
 import { getLoginPageUrl } from '../routingConstants/AppUrls';

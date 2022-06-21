@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 //state
-import { State } from '../../store/rootReducer';
+import { State } from '@/ts/store/rootReducer';
 //selectors
 //replace the following with your own selector
-import { getAppUserPermissionsList } from '../../store/app/selectors/AppSelectors';
+import { getAppUserPermissionsList } from '@/ts/store/app/selectors/AppSelectors';
 //interfaces
 import { RestrictedRouteInterface } from '../RoutingInterfaces';
 

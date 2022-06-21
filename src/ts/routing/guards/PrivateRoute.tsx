@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 //managers
 import LocalStorageManager from '../../managers/LocalStorageManger';
