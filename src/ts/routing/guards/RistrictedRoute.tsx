@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 //managers
@@ -16,10 +15,10 @@ import { RestrictedRouteInterface } from '../RoutingInterfaces';
 //components
 import PermissionsCannotAccess from '../routingComponents/PermissionsCannotAccess';
 
-const RestrictedRoute: FC<RestrictedRouteInterface> = ({
+const RestrictedRoute = ({
   children,
   requiredPermissions,
-}): JSX.Element => {
+}: RestrictedRouteInterface): JSX.Element => {
   const userPermissionsList = useSelector((state: State) => getAppUserPermissionsList(state)),
     location = useLocation();
 

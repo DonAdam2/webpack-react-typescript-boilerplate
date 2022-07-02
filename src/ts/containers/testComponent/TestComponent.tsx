@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //selectors
 import { getTestAction } from '@/ts/store/app/selectors/AppSelectors';
@@ -7,7 +6,7 @@ import { setTestAction } from '@/ts/store/app/actions/AppActions';
 //state
 import { State } from '@/ts/store/rootReducer';
 
-const TestComponent: FC = () => {
+const TestComponent = () => {
   const dispatch = useDispatch(),
     testAction = useSelector((state: State) => getTestAction(state));
 

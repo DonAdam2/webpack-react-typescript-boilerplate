@@ -1,15 +1,14 @@
-/*
-import React, { FC } from 'react';
+/*import React, { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 
 interface MockReactIntlProviderInterface {
   locale?: string;
+  children: ReactNode;
 }
 
-const MockReactIntlProvider: FC<MockReactIntlProviderInterface> = ({ children, locale = 'en' }) => (
+const MockReactIntlProvider = ({ children, locale = 'en' }: MockReactIntlProviderInterface) => (
   <IntlProvider locale={locale}>{children}</IntlProvider>
 );
 
-export default MockReactIntlProvider;
-*/
+export default MockReactIntlProvider;*/
 export {};

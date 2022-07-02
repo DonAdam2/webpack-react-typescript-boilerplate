@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 //managers
 import LocalStorageManager from '../../managers/LocalStorageManger';
@@ -6,7 +6,7 @@ import LocalStorageManager from '../../managers/LocalStorageManger';
 //replace the following with your own url
 import { getLoginPageUrl } from '../routingConstants/AppUrls';
 
-const PrivateRoute: FC = ({ children }): JSX.Element => {
+const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
 
   //to be revised

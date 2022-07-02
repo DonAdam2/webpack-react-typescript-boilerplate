@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 //managers
 import LocalStorageManager from '../../managers/LocalStorageManger';
@@ -6,7 +6,7 @@ import LocalStorageManager from '../../managers/LocalStorageManger';
 import { getHomePageUrl } from '../routingConstants/AppUrls';
 
 //used to load authentication routes (ex: login, signup, ...etc)
-const AuthenticationRoute: FC = ({ children }): JSX.Element => {
+const AuthenticationRoute = ({ children }: { children: ReactNode }) => {
   if (!LocalStorageManager.getItem('token')) {
     return <>{children}</>;
   }

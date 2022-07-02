@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useSelector } from 'react-redux';
 //state
 import { State } from '@/ts/store/rootReducer';
@@ -8,10 +7,10 @@ import { getAppUserPermissionsList } from '@/ts/store/app/selectors/AppSelectors
 //interfaces
 import { RestrictedRouteInterface } from '../RoutingInterfaces';
 
-const RestrictedSection: FC<RestrictedRouteInterface> = ({
+const RestrictedSection = ({
   requiredPermissions,
   children,
-}): JSX.Element | null => {
+}: RestrictedRouteInterface): JSX.Element | null => {
   const userPermissionsList = useSelector((state: State) => getAppUserPermissionsList(state));
 
   if (Array.isArray(requiredPermissions)) {

@@ -1,8 +1,7 @@
-import { FC } from 'react';
 //interfaces
 import { RestrictedRouteInterface } from '../RoutingInterfaces';
 
-const PermissionsCannotAccess: FC<RestrictedRouteInterface> = ({ requiredPermissions }) => (
+const PermissionsCannotAccess = ({ requiredPermissions }: RestrictedRouteInterface) => (
   <div>
     <h1>
       <span>403</span> <span>error</span>
