@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
 //selectors
 import { getAppUserPermissionsList } from '@/ts/store/app/selectors/AppSelectors';
 //interfaces
-import { State } from '@/ts/store/rootReducer';
+import { useAppSelector } from '@/ts/store/rootReducer';
 import { RestrictedWrapperInterface } from '@/ts/routing/RoutingInterfaces';
 
 const RestrictedWrapper = ({
@@ -10,7 +9,7 @@ const RestrictedWrapper = ({
   children,
   notPermittedComponent,
 }: RestrictedWrapperInterface) => {
-  const userPermissionsList = useSelector((state: State) => getAppUserPermissionsList(state));
+  const userPermissionsList = useAppSelector((state) => getAppUserPermissionsList(state));
 
   if (Array.isArray(requiredPermissions)) {
     for (let i = 0; i < requiredPermissions.length; i++) {
