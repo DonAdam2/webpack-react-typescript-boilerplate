@@ -7,7 +7,7 @@ import { isAuthenticated } from '@/ts/constants/Helpers';
 import { PublicRouteInterface } from '@/ts/routing/RoutingInterfaces';
 
 //used to load authentication routes (ex: login, signup, ...etc) and public routes
-const PublicRoute = ({ restricted, children, redirect }: PublicRouteInterface) => {
+const PublicRouteGuard = ({ restricted, children, redirect }: PublicRouteInterface) => {
   const location = useLocation();
 
   if (redirect) {
@@ -19,4 +19,4 @@ const PublicRoute = ({ restricted, children, redirect }: PublicRouteInterface) =
   }
 };
 
-export default PublicRoute;
+export default PublicRouteGuard;

@@ -5,7 +5,7 @@ import { getLoginPageUrl } from '../routingConstants/AppUrls';
 //constants
 import { isAuthenticated } from '@/ts/constants/Helpers';
 
-const PrivateRoute = ({ children }: { children: ReactNode }) => {
+const PrivateRouteGuard = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
 
   if (isAuthenticated()) {
@@ -15,4 +15,4 @@ const PrivateRoute = ({ children }: { children: ReactNode }) => {
   return <Navigate replace to={getLoginPageUrl()} state={{ from: location }} />;
 };
 
-export default PrivateRoute;
+export default PrivateRouteGuard;

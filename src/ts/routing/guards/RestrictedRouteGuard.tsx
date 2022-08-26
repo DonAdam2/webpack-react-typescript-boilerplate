@@ -9,7 +9,7 @@ import { isAuthenticated } from '@/ts/constants/Helpers';
 import PermissionsCannotAccess from '../routingComponents/PermissionsCannotAccess';
 import RestrictedWrapper from '@/ts/routing/routingComponents/RestrictedWrapper';
 
-const RestrictedRoute = ({
+const RestrictedRouteGuard = ({
   children,
   requiredPermissions,
 }: RestrictedRouteInterface): JSX.Element => {
@@ -31,4 +31,4 @@ const RestrictedRoute = ({
   }
 };
 
-export default RestrictedRoute;
+export default RestrictedRouteGuard;
