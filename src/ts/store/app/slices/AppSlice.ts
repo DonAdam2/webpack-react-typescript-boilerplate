@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+//interfaces
+import { AppSliceInitialState } from '@/ts/store/app/AppEntityInterfaces';
 
-const initialState = {
+const initialState: AppSliceInitialState = {
   testString: 'Initial test',
 };
 
