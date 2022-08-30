@@ -1,13 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@/ts/store/store';
 //selectors
 import { getTestAction } from '@/ts/store/app/selectors/AppSelectors';
 //actions
-import { setTestAction } from '@/ts/store/app/actions/AppActions';
-//state
-import { useAppSelector } from '@/ts/store/rootReducer';
+import { updateTestString } from '@/ts/store/app/slices/AppSlice';
 
 const TestComponent = () => {
-  const dispatch = useDispatch(),
+  const dispatch = useAppDispatch(),
     testAction = useAppSelector((state) => getTestAction(state));
 
   return (
@@ -18,7 +16,7 @@ const TestComponent = () => {
       <p>
         Testing the store <strong>{testAction}</strong>
       </p>
-      <button onClick={() => dispatch(setTestAction())}>Change text</button>
+      <button onClick={() => dispatch(updateTestString())}>Change text</button>
     </div>
   );
 };

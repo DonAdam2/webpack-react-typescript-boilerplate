@@ -1,7 +1,7 @@
+import { useAppSelector } from '@/ts/store/store';
 //selectors
 import { getAppUserPermissionsList } from '@/ts/store/app/selectors/AppSelectors';
 //interfaces
-import { useAppSelector } from '@/ts/store/rootReducer';
 import { RestrictedWrapperInterface } from '@/ts/routing/RoutingInterfaces';
 
 const RestrictedWrapper = ({
