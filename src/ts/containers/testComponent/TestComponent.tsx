@@ -6,7 +6,7 @@ import { updateTestString } from '@/ts/store/app/slices/AppSlice';
 
 const TestComponent = () => {
   const dispatch = useAppDispatch(),
-    testAction = useAppSelector((state) => getTestAction(state));
+    testAction = useAppSelector(getTestAction);
 
   return (
     <div className="container">
