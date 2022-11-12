@@ -9,6 +9,8 @@ const path = require('path'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
   EsLintPlugin = require('eslint-webpack-plugin'),
   ReactRefreshTypescript = require('react-refresh-typescript'),
+  //runs TypeScript type checker on a separate process, which speeds up webpack compilation time.
+  ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin'),
   //constants
   {
     port,
@@ -105,8 +107,11 @@ module.exports = (env, options) => {
               //enable react refresh in development only
               before: [isDevelopment && ReactRefreshTypescript()].filter(Boolean),
             }),
-            //ts-loader won't work with HMR unless transpileOnly is set to true
-            transpileOnly: isDevelopment,
+            /*
+             * ts-loader won't work with HMR unless transpileOnly is set to true
+             * this option is set to true by default because we are using (fork-ts-checker-webpack-plugin)
+             */
+            //transpileOnly: isDevelopment,
           },
         },
         {
@@ -201,6 +206,7 @@ module.exports = (env, options) => {
       new EsLintPlugin({
         extensions: ['.js', '.ts', '.tsx', '.json'],
       }),
+      new ForkTsCheckerWebpackPlugin(),
       new HtmlWebpackPlugin({
         title,
         template: `${PATHS.src}/index.html`,
