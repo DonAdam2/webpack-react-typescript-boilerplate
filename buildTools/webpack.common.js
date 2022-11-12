@@ -7,8 +7,8 @@ const path = require('path'),
   { DefinePlugin } = require('webpack'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-  autoprefixer = require('autoprefixer'),
   EsLintPlugin = require('eslint-webpack-plugin'),
+  ReactRefreshTypescript = require('react-refresh-typescript'),
   //constants
   {
     port,
@@ -98,8 +98,16 @@ module.exports = (env, options) => {
         },
         {
           test: /\.(ts|tsx)$/,
-          use: ['ts-loader'],
           exclude: /node_modules/,
+          loader: 'ts-loader',
+          options: {
+            getCustomTransformers: () => ({
+              //enable react refresh in development only
+              before: [isDevelopment && ReactRefreshTypescript()].filter(Boolean),
+            }),
+            //ts-loader won't work with HMR unless transpileOnly is set to true
+            transpileOnly: isDevelopment,
+          },
         },
         {
           test: /\.(jpe?g|svg|png|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
