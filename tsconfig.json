@@ -24,7 +24,7 @@
       "@/jest/*": [ "./jest/*"],
       "@/ts/*": ["./src/ts/*"],
       "@/scss/*": ["./src/scss/*"],
-      "@/img/*": ["./src/assets/images"]
+      "@/img/*": ["./public/assets/images"]
     }
   },
   "include": [
