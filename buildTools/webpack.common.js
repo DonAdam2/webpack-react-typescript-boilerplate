@@ -80,6 +80,7 @@ module.exports = (env, options) => {
         '@/ts': `${PATHS.src}/ts`,
         '@/scss': `${PATHS.src}/scss`,
         '@/img': `${PATHS.public}/assets/images`,
+        '@/fonts': `${PATHS.public}/assets/fonts`,
         '@/jest': PATHS.jest,
       },
     },
