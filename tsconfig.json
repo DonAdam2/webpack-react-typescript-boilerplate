@@ -20,8 +20,7 @@
       "@/jest/*": ["./jest/*"],
       "@/ts/*": ["./src/ts/*"],
       "@/scss/*": ["./src/scss/*"],
-      "@/img/*": ["./public/assets/images"],
-      "@/fonts/*": ["./public/assets/fonts"]
+      "@/public/*": ["./public/*"]
     }
   },
   "include": ["src"]
