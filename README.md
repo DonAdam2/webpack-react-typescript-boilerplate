@@ -1,3 +1,18 @@
+# Table of Contents:
+- [Overview](#this-webpack-v5750-boilerplate-supports-the-following)
+- [Prerequisites](#prerequisites)
+- [Installing & getting started](#installing--getting-started)
+- [React configuration](#it-has-the-following-configuration-for-react)
+- [Jest mocks](#it-has-the-following-mocks-for-jest)
+- [Aliases](#has-the-following-aliases)
+- [Environments](#environments)
+- [Enable CSS modules](#enable-css-modules)
+- [Enable HTTPS in development](#enable-https-in-development-yarn-start)
+- [Configuring prettier](#configuring-prettier)
+- [Site meta tags](#site-meta-tags)
+- [Extras](#extras)
+- [Available scripts](#available-scripts)
+
 ## This webpack (V5.75.0) boilerplate supports the following:
 
 - Testing using **jest**, **react-testing-library**
@@ -6,19 +21,6 @@
 - Hot reloading for **JS** & **CSS** and **redux** store (in development)
 - Prettier (for code format)
 - Docker setup for development
-
-## It has the following configuration for React:
-
-- React router dom
-- Redux & Redux thunk & & Redux logger & Redux devTool
-- 2 environments {production: .env, development: .env.development}
-
-## It has the following mocks for Jest:
-
-- RenderWithRedux => overrides the render method of RTL with redux
-- RenderWithReactIntl => overrides the render method of RTL with react-intl provider (if you are using it you need to download it)
-- RenderWithRouter => overrides the render method of RTL with react router
-- RenderWithProviders => overrides the render method of RTL with all providers
 
 ## Prerequisites:
 
@@ -39,6 +41,19 @@
 - Navigate to project directory `cd webpack-react-typescript-boilerplate`
 - Install dependencies (required for prettier) => `yarn install`
 - Start the development server => `docker-compose up --build`
+
+## It has the following configuration for React:
+
+- React router dom
+- Redux toolkit
+- 2 environments {production: .env, development: .env.development}
+
+## It has the following mocks for Jest:
+
+- RenderWithRedux => overrides the render method of RTL with redux
+- RenderWithReactIntl => overrides the render method of RTL with react-intl provider (if you are using it you need to download it)
+- RenderWithRouter => overrides the render method of RTL with react router
+- RenderWithProviders => overrides the render method of RTL with all providers
 
 ## Has the following aliases:
 - @/jest => for the jest directory
@@ -130,7 +145,7 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce a cod
 - Open constants.js file and update metaInfo object
 - Open public/assets/images and replace (favicon.png, metaImage.jpg) with your images but using the same name
 
-## Extra:
+## Extras:
 
 - Private route guard => protect the given route based on a token.
 - Public route guard => used for public routes and authentication routes (ex: login, signup, ...etc) {if authenticated it will redirect the user to the home page}
