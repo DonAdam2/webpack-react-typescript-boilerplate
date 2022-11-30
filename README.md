@@ -113,7 +113,7 @@ Add `set HTTPS=true` to `yarn start` script => `"start": "set HTTPS=true && node
 
 ## Configuring Prettier
 
-This build relies on [Prettier formatter](https://prettier.io/) to enforce a code style. And [ESLint](https://eslint.org/) for identifying problematic patterns found in JavaScript code.
+This build relies on [Prettier formatter](https://prettier.io/) to enforce code style. And [ESLint](https://eslint.org/) for identifying problematic patterns found in the code.
 
 - Setting up prettier:
 
@@ -121,7 +121,7 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce a cod
 
   **Notes**:
 
-  - It's better to use the local `node_modules` version of prettier instead of a global one. This is to avoid version conflicts (in case the globally installed version does not match with the versions specified in `package.json`).
+  - It's better to use local `node_modules` version of prettier instead of a global one, to avoid version conflicts (in case the globally installed version does not match the version specified in `package.json`).
 
   2- Follow the next steps to set up **prettier** and **eslint** in **_VS Code_**:
 
