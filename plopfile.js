@@ -215,13 +215,13 @@ module.exports = (plop) => {
         },
         {
           type: 'append',
-          path: `${rootDirectory}/ts/store/rootReducer.ts`,
+          path: `${rootDirectory}/ts/store/reduxSlices.ts`,
           pattern: `/* PLOP_INJECT_IMPORT */`,
           template: `import {{camelCase name}} from './{{camelCase reducerEntity}}/slices/{{pascalCase name}}Slice';`,
         },
         {
           type: 'append',
-          path: `${rootDirectory}/ts/store/rootReducer.ts`,
+          path: `${rootDirectory}/ts/store/reduxSlices.ts`,
           pattern: `/* PLOP_INJECT_REDUCER_SLICE */`,
           template: `{{camelCase name}},`,
         },
