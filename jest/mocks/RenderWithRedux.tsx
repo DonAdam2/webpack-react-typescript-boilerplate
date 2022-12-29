@@ -9,7 +9,7 @@ import { ExtendedRenderOptions } from '@/jest/interfaces/JestInterfaces';
 function renderWithRedux(
   ui: ReactElement,
   {
-    preloadedState = {},
+    preloadedState,
     // Automatically create a store instance if no store was passed in
     store = setupStore(preloadedState),
     ...renderOptions
