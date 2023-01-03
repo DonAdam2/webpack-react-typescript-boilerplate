@@ -256,19 +256,22 @@ module.exports = (plop) => {
     },
   });
 
+  const dontCacheBustURLsMatching = /\.[0-9a-f]{8}\./;
+  // exclude = [/\.map$/, /asset-manifest\.json$/, /LICENSE/];
+
   plop.setGenerator('progressiveWebApp', {
     description: 'Add required files for progressive web app',
     prompts: [],
     actions: [
       {
         type: 'add',
-        path: `${rootDirectory}/serviceWorker/swSource.js`,
-        templateFile: 'generatorTemplates/progressiveWebApp/swSource.js.hbs',
+        path: `${rootDirectory}/serviceWorker/swSource.ts`,
+        templateFile: 'generatorTemplates/progressiveWebApp/swSource.ts.hbs',
       },
       {
         type: 'add',
-        path: `${rootDirectory}/serviceWorker/swRegistration.js`,
-        templateFile: 'generatorTemplates/progressiveWebApp/swRegistration.js.hbs',
+        path: `${rootDirectory}/serviceWorker/swRegistration.ts`,
+        templateFile: 'generatorTemplates/progressiveWebApp/swRegistration.ts.hbs',
       },
       {
         type: 'add',
@@ -317,7 +320,11 @@ module.exports = (plop) => {
         }),
         new InjectManifest({
           //this is the source of your service worker setup
-          swSrc: \`\${PATHS.src}/serviceWorker/swSource.js\`,
+          swSrc: \`\${PATHS.src}/serviceWorker/swSource\`,
+          dontCacheBustURLsMatching: ${dontCacheBustURLsMatching},         
+          // Bump up the default maximum size (2mb) to (5mb) that's precached,
+          // to make lazy-loading failure scenarios less likely.
+          maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
           //this is the output name of your service worker file
           swDest: 'serviceWorker.js',
         }),`,

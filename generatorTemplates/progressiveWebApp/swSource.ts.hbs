@@ -1,3 +1,5 @@
+/// <reference lib="webworker" />
+
 import { clientsClaim } from 'workbox-core';
 import { createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
@@ -5,6 +7,8 @@ import { StaleWhileRevalidate } from 'workbox-strategies';
 import { CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
+
+declare const self: ServiceWorkerGlobalScope;
 
 // This clientsClaim() should be at the top level
 // of your service worker, not inside of, e.g.,
@@ -74,7 +78,7 @@ Make an API only if the required content is not present in the cache,
 or cached content has expired. */
 registerRoute(
   ({ url }) => url.origin === 'https://fonts.gstatic.com',
-    new CacheFirst({
+  new CacheFirst({
     cacheName: fontCacheName,
     plugins: [
       //cache successful responses only
@@ -99,25 +103,24 @@ registerRoute(
   new CacheFirst({
     cacheName: 'images',
     plugins: [
-    new CacheableResponsePlugin({
-      statuses: [0, 200],
-    }),
-    new ExpirationPlugin({
-      maxAgeSeconds: maxAgeOneMonth,
-      maxEntries: imagesMaxEntries,
-    }),
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: maxAgeOneMonth,
+        maxEntries: imagesMaxEntries,
+      }),
     ],
   })
 );
 
 /************** cache static resources **************/
 //resources in index.html file (e.g: tailwind, bootstrap, ...etc)
-const staticResourcesCacheName = 'static-resources';
 
 registerRoute(
   ({ request }) => request.destination === 'script' || request.destination === 'style',
   new StaleWhileRevalidate({
-    cacheName: staticResourcesCacheName,
+    cacheName: 'static-resources',
   })
 );
 
