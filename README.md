@@ -79,7 +79,7 @@
   ```
   - Update permissions to be able to install NPM packages
   ```
-  sudo chown -R $(whoami) ~/workspace/webpack-react-boilerplate
+  sudo chown -R $(whoami) ~/workspace/webpack-react-typescript-boilerplate
   ```
   - Install packages (for linting purposes):
   ```
