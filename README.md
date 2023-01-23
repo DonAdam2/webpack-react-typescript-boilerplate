@@ -1,19 +1,19 @@
 # Table of Contents:
-- [Overview](#this-webpack--v5750--boilerplate-supports-the-following-)
-- [Prerequisites](#prerequisites-)
-- [Installing & getting started](#installing--getting-started-)
-- [Windows subsystem for Linux](#windows-subsystem-for-linux--wsl2---for-docker--)
-- [React configuration](#it-has-the-following-configuration-for-react-)
-- [Jest mocks](#it-has-the-following-mocks-for-jest-)
-- [Aliases](#it-has-the-following-aliases-)
-- [Environments](#environments-)
-- [Enable CSS modules](#enable-css-modules-)
+- [Overview](#this-webpack--v5750--boilerplate-supports-the-following)
+- [Prerequisites](#prerequisites)
+- [Installing & getting started](#installing--getting-started)
+- [Windows subsystem for Linux (WSL2)](#windows-subsystem-for-linux-wsl2-for-docker)
+- [Available React configuration](#available-react-configurations)
+- [Available Jest mocks](#available-jest-mocks)
+- [Available aliases](#available-aliases)
+- [Environments](#environments)
+- [Enable CSS modules](#enable-css-modules)
 - [Enable HTTPS in development](#enable-https-in-development-yarn-start)
 - [Enable PWA (production only)](#enable-pwa-yarn-generate-progressivewebapp)
-- [Configuring prettier](#configuring-prettier-)
-- [Site meta tags](#site-meta-tags-)
-- [Extras](#extras-)
-- [Code generator](#code-generator--using-plop--)
+- [Configuring prettier](#configuring-prettier)
+- [Site meta tags](#site-meta-tags)
+- [Extras](#extras)
+- [Code generator](#code-generator--using-plop)
 - [Available scripts](#available-scripts)
 
 ## This webpack (V5.75.0) boilerplate supports the following:
@@ -23,7 +23,8 @@
 - Autoprefixer for CSS (it supports IE >= 11)
 - Hot reloading for **JS** & **CSS** and **redux** store (in development)
 - Prettier (for code format)
-- Docker setup for development (basic setup for production)
+- Docker setup for development
+- Docker setup for production (basic setup **using nginx**)
 
 ## Prerequisites:
 
@@ -95,20 +96,20 @@
 - Update the **_production_** section of the **_Dockerfile_** to meet your needs
 - Run the following command to build your image => `docker-compose up web-prod`
 
-## It has the following configuration for React:
+## Available React configurations:
 
 - React router dom
 - Redux toolkit with Redux logger & Redux devTool
 - 2 environments {production: .env, development: .env.development}
 
-## It has the following mocks for Jest:
+## Available Jest mocks:
 
 - RenderWithRedux => overrides the render method of RTL with redux
 - RenderWithReactIntl => overrides the render method of RTL with react-intl provider (if you are using it you need to download it)
 - RenderWithRouter => overrides the render method of RTL with react router
 - RenderWithProviders => overrides the render method of RTL with all providers
 
-## It has the following aliases:
+## Available aliases:
 - @/jest => for the jest directory
 - @/ts => for the TS directory
 - @/scss => for the SCSS directory
@@ -165,7 +166,7 @@ Add `set HTTPS=true` to `yarn start` script => `"start": "set HTTPS=true && node
 
 ## Enable PWA `yarn generate progressiveWebApp`
 
-- Run the given script to add required files for progressive web app
+- Run the given script to add the required files for progressive web app
 - Install the following packages:
 
   ```
@@ -272,6 +273,7 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce code 
 - Custom hooks
 - Services
 - Reducers
+- progressiveWebApp
 
 ## Available Scripts
 
