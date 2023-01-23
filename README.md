@@ -13,7 +13,7 @@
 - [Configuring prettier](#configuring-prettier)
 - [Site meta tags](#site-meta-tags)
 - [Extras](#extras)
-- [Code generator](#code-generator--using-plop)
+- [Code generator](#code-generator-using-plop)
 - [Available scripts](#available-scripts)
 
 ## This webpack (V5.75.0) boilerplate supports the following:
