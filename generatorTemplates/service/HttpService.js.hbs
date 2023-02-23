@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 // lodash
 /*import { cloneDeep } from 'lodash';
 
@@ -13,7 +13,7 @@ const createNewBaseUrl = (url: string | undefined) =>
 
 const apiService = createNewBaseUrl(process.env.BASE_URL);
 
-const requestInterceptor = (config: AxiosRequestConfig) => {
+const requestInterceptor = (config: InternalAxiosRequestConfig) => {
 	return config;
 };
 
