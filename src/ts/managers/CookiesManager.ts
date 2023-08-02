@@ -6,27 +6,35 @@ class CookiesManager {
   // - set new cookie => setCookie('name;, 'value', 10);
   // - remove cookie => setCookie('name', '', -10);
   static setCookie(cname: string, cvalue: any, exdays: number) {
-    const encryptedValue = encryptData(cvalue),
-      d = new Date();
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    const expires = 'expires=' + d.toUTCString();
-    document.cookie = cname + '=' + encryptedValue + ';' + expires + ';path=/';
+    if (this.isStorageAvailable()) {
+      const encryptedValue = encryptData(cvalue),
+        d = new Date();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      const expires = 'expires=' + d.toUTCString();
+      document.cookie = cname + '=' + encryptedValue + ';' + expires + ';path=/';
+    }
   }
   static getCookie(cname: string) {
-    const name = cname + '=',
-      ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      //remove double quotes from cookies value
-      let c = ca[i].replace(/^"(.*)"$/, '$1');
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1);
+    if (this.isStorageAvailable()) {
+      const name = cname + '=',
+        ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        //remove double quotes from cookies value
+        let c = ca[i].replace(/^"(.*)"$/, '$1');
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+          const value = c.substring(name.length, c.length);
+          return decryptData(value);
+        }
       }
-      if (c.indexOf(name) === 0) {
-        const value = c.substring(name.length, c.length);
-        return decryptData(value);
-      }
+      return '';
     }
     return '';
+  }
+  static isStorageAvailable() {
+    return navigator.cookieEnabled;
   }
 }
 
