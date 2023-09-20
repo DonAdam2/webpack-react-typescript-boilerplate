@@ -14,7 +14,9 @@ const path = require('path'),
     isCssModules,
     metaInfo: { title, description, keywords },
   } = require('./constants'),
-  { srcPath, outputSrcPath, jestPath, publicDirPath } = require('./paths');
+  { srcPath, outputSrcPath, jestPath, publicDirPath } = require('./paths'),
+  //helpers
+  { generateScopedName } = require('./helpers');
 
 module.exports = (env, options) => {
   // the mode variable is passed in package.json scripts (development, production)
@@ -125,7 +127,17 @@ module.exports = (env, options) => {
 
                           return 'local';
                         },
-                        localIdentName: isDevelopment ? '[name]_[local]' : '[contenthash:base64]',
+                        ...(isDevelopment
+                          ? {
+                              //e.g. box_box-wrapper
+                              localIdentName: '[name]_[local]',
+                            }
+                          : {
+                              //e.g. b_i
+                              getLocalIdent: (context, localIdentName, localName) => {
+                                return generateScopedName(localName, context.resourcePath);
+                              },
+                            }),
                         localIdentContext: srcPath,
                         localIdentHashSalt: 'react-boilerplate',
                         exportLocalsConvention: 'camelCaseOnly',
