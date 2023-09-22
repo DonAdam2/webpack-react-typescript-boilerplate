@@ -1,4 +1,3 @@
-import { Store } from 'redux';
 import { Provider } from 'react-redux';
 // all providers mock
 import { screen, fireEvent } from '@testing-library/react';
