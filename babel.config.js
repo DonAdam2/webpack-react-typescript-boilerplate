@@ -14,8 +14,7 @@ const hasJsxRuntime = (() => {
 module.exports = (api) => {
   api.cache.using(() => process.env.NODE_ENV);
 
-  return {
-    presets: [
+  const presets = [
       [
         '@babel/preset-env',
         {
@@ -29,6 +28,10 @@ module.exports = (api) => {
       ['@babel/preset-react', { runtime: hasJsxRuntime ? 'automatic' : 'classic' }],
       '@babel/preset-typescript',
     ],
-    plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-syntax-dynamic-import'],
+    plugins = ['@babel/plugin-transform-runtime', '@babel/plugin-syntax-dynamic-import'];
+
+  return {
+    presets,
+    plugins,
   };
 };
