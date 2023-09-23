@@ -286,9 +286,10 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce code 
     ```
 - Open `tsconfig.json` file and add the cypress to the types array:
   ```
-   "types": ["cypress", "node", "jest", "@testing-library/jest-dom"]
+   "types": ["node", "jest", "@testing-library/jest-dom", "cypress", "cypress.config.ts"]
   ```
-- Open `cypress.config.js` file and add the baseUrl:
+- Run `cypress:open` command and choose E2E to configure it
+- Open `cypress.config.ts` file and add the baseUrl:
   ```
    baseUrl: 'http://localhost:3000/',
   ```
@@ -298,7 +299,7 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce code 
     ```
     pnpm add -D @cypress/code-coverage
     ```
-  - Import the installed package in `cypress.config.js` file:
+  - Import the installed package in `cypress.config.ts` file:
     ```
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config);
