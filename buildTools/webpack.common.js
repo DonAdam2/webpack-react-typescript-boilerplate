@@ -5,7 +5,6 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
   EsLintPlugin = require('eslint-webpack-plugin'),
   postcssPresetEnv = require('postcss-preset-env'),
-  ReactRefreshTypescript = require('react-refresh-typescript'),
   //runs TypeScript type checker on a separate process, which speeds up webpack compilation time.
   ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin'),
   //constants
@@ -65,7 +64,7 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
-          test: /\.(js|ts|tsx)$/,
+          test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
           options: {
@@ -75,22 +74,6 @@ module.exports = (env, options) => {
             cacheDirectory: true,
             cacheCompression: false,
             compact: !isDevelopment,
-          },
-        },
-        {
-          test: /\.(ts|tsx)$/,
-          exclude: /node_modules/,
-          loader: 'ts-loader',
-          options: {
-            getCustomTransformers: () => ({
-              //enable react refresh in development only
-              before: [isDevelopment && ReactRefreshTypescript()].filter(Boolean),
-            }),
-            /*
-             * ts-loader won't work with HMR unless transpileOnly is set to true
-             * this option is set to true by default because we are using (fork-ts-checker-webpack-plugin)
-             */
-            //transpileOnly: isDevelopment,
           },
         },
         {
