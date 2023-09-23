@@ -284,7 +284,7 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce code 
     ```
     "cypress:open": "pnpm cypress:start \"cypress open --e2e -b electron\""
     ```
-- Open `tsconfig.json` file and add the cypress to the types array:
+- Open `tsconfig.json` file and add cypress to the types array:
   ```
    "types": ["node", "jest", "@testing-library/jest-dom", "cypress", "cypress.config.ts"]
   ```
