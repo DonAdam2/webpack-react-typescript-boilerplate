@@ -66,6 +66,12 @@ const generateContainerOrPage = (isPage = false) => {
       data: { isCssModules },
     },
     {
+      type: 'eslint',
+      path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
+        isPage ? 'Page' : ''
+      }/{{pascalCase name}}${isPage ? 'Page' : ''}.tsx`,
+    },
+    {
       type: 'add',
       path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
         isPage ? 'Page' : ''
@@ -74,16 +80,30 @@ const generateContainerOrPage = (isPage = false) => {
         isPage ? '/page/Page' : '/component/Component'
       }.test.js.hbs`,
     },
+    {
+      type: 'eslint',
+      path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
+        isPage ? 'Page' : ''
+      }/{{pascalCase name}}${isPage ? 'Page' : ''}.test.tsx`,
+    },
   ];
 
   if (isCssModules) {
-    actionsList.push({
-      type: 'add',
-      path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
-        isPage ? 'Page' : ''
-      }/{{pascalCase name}}${isPage ? 'Page' : ''}.scss`,
-      templateFile: 'generatorTemplates/component/Component.scss.hbs',
-    });
+    actionsList.push(
+      {
+        type: 'add',
+        path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
+          isPage ? 'Page' : ''
+        }/{{pascalCase name}}${isPage ? 'Page' : ''}.scss`,
+        templateFile: 'generatorTemplates/component/Component.scss.hbs',
+      },
+      {
+        type: 'eslint',
+        path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
+          isPage ? 'Page' : ''
+        }/{{pascalCase name}}${isPage ? 'Page' : ''}.scss`,
+      }
+    );
   } else {
     actionsList.push(
       {
@@ -94,12 +114,22 @@ const generateContainerOrPage = (isPage = false) => {
         templateFile: 'generatorTemplates/component/Component.scss.hbs',
       },
       {
+        type: 'eslint',
+        path: `${rootDirectory}/scss/containers${isPage ? '/pages' : ''}/_{{dashCase name}}${
+          isPage ? '-page' : ''
+        }.scss`,
+      },
+      {
         type: 'append',
         path: `${rootDirectory}/scss/_containers.scss`,
         pattern: `/* PLOP_INJECT_IMPORT */`,
         template: `@import './containers${isPage ? '/pages' : ''}/{{dashCase name}}${
           isPage ? '-page' : ''
         }';`,
+      },
+      {
+        type: 'eslint',
+        path: `${rootDirectory}/scss/_containers.scss`,
       }
     );
   }
@@ -124,18 +154,32 @@ module.exports = (plop) => {
           data: { isCssModules },
         },
         {
+          type: 'eslint',
+          path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.tsx`,
+        },
+        {
           type: 'add',
           path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.test.tsx`,
           templateFile: 'generatorTemplates/component/Component.test.js.hbs',
         },
+        {
+          type: 'eslint',
+          path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.test.tsx`,
+        },
       ];
 
       if (isCssModules) {
-        actionsList.push({
-          type: 'add',
-          path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
-          templateFile: 'generatorTemplates/component/Component.scss.hbs',
-        });
+        actionsList.push(
+          {
+            type: 'add',
+            path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
+            templateFile: 'generatorTemplates/component/Component.scss.hbs',
+          },
+          {
+            type: 'eslint',
+            path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
+          }
+        );
       } else {
         actionsList.push(
           {
@@ -144,10 +188,18 @@ module.exports = (plop) => {
             templateFile: 'generatorTemplates/component/Component.scss.hbs',
           },
           {
+            type: 'eslint',
+            path: `${rootDirectory}/scss/components/_{{dashCase name}}.scss`,
+          },
+          {
             type: 'append',
             path: `${rootDirectory}/scss/_components.scss`,
             pattern: `/* PLOP_INJECT_IMPORT */`,
             template: `@import './components/{{dashCase name}}';`,
+          },
+          {
+            type: 'eslint',
+            path: `${rootDirectory}/scss/_components.scss`,
           }
         );
       }
@@ -177,6 +229,10 @@ module.exports = (plop) => {
         path: `${rootDirectory}/ts/customHooks/{{camelCase name}}.ts`,
         templateFile: 'generatorTemplates/hook.js.hbs',
       },
+      {
+        type: 'eslint',
+        path: `${rootDirectory}/ts/customHooks/{{camelCase name}}.ts`,
+      },
     ],
   });
 
@@ -190,10 +246,18 @@ module.exports = (plop) => {
         templateFile: 'generatorTemplates/service/Service.js.hbs',
       },
       {
+        type: 'eslint',
+        path: `${rootDirectory}/ts/services/{{pascalCase name}}Service.ts`,
+      },
+      {
         type: 'add',
         path: `${rootDirectory}/ts/services/HttpService.ts`,
         templateFile: 'generatorTemplates/service/HttpService.js.hbs',
         skipIfExists: true,
+      },
+      {
+        type: 'eslint',
+        path: `${rootDirectory}/ts/services/HttpService.ts`,
       },
     ],
   });
@@ -209,9 +273,17 @@ module.exports = (plop) => {
           templateFile: 'generatorTemplates/reducer/Slice.js.hbs',
         },
         {
+          type: 'eslint',
+          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/slices/{{pascalCase name}}Slice.ts`,
+        },
+        {
           type: 'add',
           path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
           templateFile: 'generatorTemplates/reducer/Selectors.js.hbs',
+        },
+        {
+          type: 'eslint',
+          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
         },
         {
           type: 'append',
@@ -225,26 +297,42 @@ module.exports = (plop) => {
           pattern: `/* PLOP_INJECT_REDUCER_SLICE */`,
           template: `{{camelCase name}},`,
         },
+        {
+          type: 'eslint',
+          path: `${rootDirectory}/ts/store/reduxSlices.ts`,
+        },
       ];
 
       //if store entity (directory) exists
       if (isStoreEntityExist(data.reducerEntity)) {
-        actionsList.push({
-          type: 'append',
-          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
-          pattern: `/* PLOP_INJECT_REDUCER_INTERFACE */`,
-          template: `
+        actionsList.push(
+          {
+            type: 'append',
+            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
+            pattern: `/* PLOP_INJECT_REDUCER_INTERFACE */`,
+            template: `
 						export interface {{pascalCase name}}SliceInitialState {
 							testString: string;
 						}
 						`,
-        });
+          },
+          {
+            type: 'eslint',
+            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
+          }
+        );
       } else {
-        actionsList.push({
-          type: 'add',
-          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
-          templateFile: 'generatorTemplates/reducer/EntityInterfaces.js.hbs',
-        });
+        actionsList.push(
+          {
+            type: 'add',
+            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
+            templateFile: 'generatorTemplates/reducer/EntityInterfaces.js.hbs',
+          },
+          {
+            type: 'eslint',
+            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
+          }
+        );
       }
 
       return actionsList;
@@ -264,9 +352,17 @@ module.exports = (plop) => {
         templateFile: 'generatorTemplates/progressiveWebApp/swSource.ts.hbs',
       },
       {
+        type: 'eslint',
+        path: `${rootDirectory}/serviceWorker/swSource.ts`,
+      },
+      {
         type: 'add',
         path: `${rootDirectory}/serviceWorker/swRegistration.ts`,
         templateFile: 'generatorTemplates/progressiveWebApp/swRegistration.ts.hbs',
+      },
+      {
+        type: 'eslint',
+        path: `${rootDirectory}/serviceWorker/swRegistration.ts`,
       },
       {
         type: 'append',
@@ -279,6 +375,10 @@ module.exports = (plop) => {
         path: `${rootDirectory}/index.tsx`,
         pattern: `/* PLOP_INJECT_PWA_REGISTERER */`,
         template: `registerServiceWorker();`,
+      },
+      {
+        type: 'eslint',
+        path: `${rootDirectory}/index.tsx`,
       },
       {
         type: 'append',
@@ -349,6 +449,10 @@ module.exports = (plop) => {
           //this is the output name of your service worker file
           swDest: 'serviceWorker.js',
         }),`,
+      },
+      {
+        type: 'eslint',
+        path: `${buildToolsDirectory}/webpack.prod.js`,
       },
     ],
   });
