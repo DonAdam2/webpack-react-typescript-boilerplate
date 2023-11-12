@@ -400,7 +400,6 @@ module.exports = async (plop) => {
         path: `${buildToolsDirectory}/webpack.prod.js`,
         pattern: `/* PLOP_INJECT_PWA_PLUGINS */`,
         template: `new WebpackPwaManifest({
-        theme_color: '#ffffff',
         background_color: '#000000',
         display: 'standalone',
         scope: '/',
