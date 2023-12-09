@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, ReactElement } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 //setup store

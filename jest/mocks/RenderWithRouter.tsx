@@ -1,10 +1,18 @@
-import React, { PropsWithChildren, ReactElement } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { render, RenderOptions } from '@testing-library/react';
+import { PropsWithChildren, ReactElement } from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import { ExtendedRenderOptionsForRouter } from '../interfaces/JestInterfaces';
 
-function renderWithRouter(ui: ReactElement, { ...renderOptions }: RenderOptions = {}) {
+function renderWithRouter(
+  ui: ReactElement,
+  {
+    //use it if you want to navigate to a specific route
+    initialEntries = ['/'],
+    ...renderOptions
+  }: ExtendedRenderOptionsForRouter = {}
+) {
   function Wrapper({ children }: PropsWithChildren): JSX.Element {
-    return <BrowserRouter>{children}</BrowserRouter>;
+    return <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>;
   }
 
   // Return an object with the all of RTL's query functions

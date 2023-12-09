@@ -4,6 +4,7 @@ import { AppSliceInitialState } from '@/ts/store/app/AppEntityInterfaces';
 
 const initialState: AppSliceInitialState = {
   testString: 'Initial test',
+  permissions: ['search', 'createUser', 'updateSubscription'],
 };
 
 const appSlice = createSlice({

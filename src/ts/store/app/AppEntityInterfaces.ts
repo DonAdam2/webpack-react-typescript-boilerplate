@@ -2,4 +2,5 @@
 
 export interface AppSliceInitialState {
   testString: string;
+  permissions: string[];
 }
