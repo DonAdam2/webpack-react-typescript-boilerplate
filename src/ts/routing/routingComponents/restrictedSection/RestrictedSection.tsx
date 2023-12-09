@@ -1,5 +1,5 @@
 //interfaces
-import { RestrictedRouteInterface } from '../RoutingInterfaces';
+import { RestrictedRouteInterface } from '../../RoutingInterfaces';
 //components
 import RestrictedWrapper from '@/ts/routing/routingComponents/RestrictedWrapper';
 
