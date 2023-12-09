@@ -1,5 +1,5 @@
 //interfaces
-import { RestrictedRouteInterface } from '../RoutingInterfaces';
+import { RestrictedRouteInterface } from '../../RoutingInterfaces';
 
 const PermissionsCannotAccess = ({ requiredPermissions }: RestrictedRouteInterface) => (
   <div>

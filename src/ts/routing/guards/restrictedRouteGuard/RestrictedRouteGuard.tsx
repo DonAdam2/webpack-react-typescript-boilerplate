@@ -6,7 +6,7 @@ import { RestrictedRouteInterface } from '../../RoutingInterfaces';
 //constants
 import { isAuthenticated } from '@/ts/constants/Helpers';
 //components
-import PermissionsCannotAccess from '../../routingComponents/PermissionsCannotAccess';
+import PermissionsCannotAccess from '../../routingComponents/permissionsCannotAccess/PermissionsCannotAccess';
 import RestrictedWrapper from '@/ts/routing/routingComponents/RestrictedWrapper';
 
 const RestrictedRouteGuard = ({
