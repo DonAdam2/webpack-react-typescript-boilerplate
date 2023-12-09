@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 //routes
-import { getHomePageUrl } from '../routingConstants/AppUrls';
+import { getHomePageUrl } from '../../routingConstants/AppUrls';
 //constants
 import { isAuthenticated } from '@/ts/constants/Helpers';
 //interfaces
