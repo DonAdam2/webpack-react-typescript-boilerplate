@@ -1,7 +1,7 @@
 //interfaces
 import { RestrictedRouteInterface } from '../../RoutingInterfaces';
 //components
-import RestrictedWrapper from '@/ts/routing/routingComponents/RestrictedWrapper';
+import RestrictedWrapper from '@/ts/routing/routingComponents/restrictedWrapper/RestrictedWrapper';
 
 const RestrictedSection = ({
   requiredPermissions,
