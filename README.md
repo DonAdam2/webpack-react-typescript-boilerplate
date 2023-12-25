@@ -435,3 +435,5 @@ Clears test cache.
 ### `pnpm generate` **_component_** || **_container_** || **_page_** || **_hook_** || **_service_** || **_reducer_** || **_progressiveWebApp_**
 
 - It creates a boilerplate for component, container, page, custom hook, service, reducer or progressive web app setup.
+
+<p dir="rtl"><a href="#table-of-contents">Back to top</a></p>
