@@ -75,15 +75,23 @@ module.exports = (env, options) => {
         {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
-          options: {
-            // This is a feature of `babel-loader` for webpack (not Babel itself).
-            // It enables caching results in ./node_modules/.cache/babel-loader/
-            // directory for faster rebuilds.
-            cacheDirectory: true,
-            cacheCompression: false,
-            compact: !isDevelopment,
-          },
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                // This is a feature of `babel-loader` for webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // directory for faster rebuilds.
+                cacheDirectory: true,
+                cacheCompression: false,
+                compact: !isDevelopment,
+              },
+            },
+            {
+              //required for ForkTsCheckerWebpackPlugin
+              loader: 'ts-loader',
+            },
+          ],
         },
         {
           test: /\.(jpe?g|svg|png|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
@@ -113,13 +121,8 @@ module.exports = (env, options) => {
                       modules: {
                         //exclude external styles from css modules transformation
                         auto: (resourcePath) => !resourcePath.includes('node_modules'),
-                        mode: (resourcePath) => {
-                          if (/global.scss$/i.test(resourcePath)) {
-                            return 'global';
-                          }
-
-                          return 'local';
-                        },
+                        mode: (resourcePath) =>
+                          /global.scss$/i.test(resourcePath) ? 'global' : 'local',
                         ...(isDevelopment
                           ? {
                               //e.g. box_box-wrapper
@@ -183,7 +186,7 @@ module.exports = (env, options) => {
       new EsLintPlugin({
         extensions: ['.js', '.ts', '.tsx', '.json'],
       }),
-      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin({ async: isDevelopment }),
       new HtmlWebpackPlugin(
         Object.assign(
           {},
