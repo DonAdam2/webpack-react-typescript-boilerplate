@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 import { configureStore } from '@reduxjs/toolkit';
 //root reducer
 import { reduxSlices } from './reduxSlices';
@@ -19,10 +21,8 @@ const store = configureStore({
   },
 });
 
-const _store = () => store;
-
 //type of your store if you need to use it somewhere
-export type ToolkitStore = ReturnType<typeof _store>;
+export type ToolkitStore = typeof store;
 export type RootState = ReturnType<typeof store.getState>;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export type AppDispatch = typeof store.dispatch;

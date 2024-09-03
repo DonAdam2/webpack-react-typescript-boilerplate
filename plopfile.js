@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const { isCssModules, rootDirectory, buildToolsDirectory } = require('./buildTools/constants'),
   fs = require('fs');
 

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const path = require('path'),
   { rootDirectory, devServer, publicDirectory } = require('../buildTools/constants');
 
