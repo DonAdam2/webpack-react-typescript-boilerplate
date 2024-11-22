@@ -125,7 +125,7 @@ const generateContainerOrPage = (isPage = false) => {
         type: 'append',
         path: `${rootDirectory}/scss/_containers.scss`,
         pattern: `/* PLOP_INJECT_IMPORT */`,
-        template: `@import './containers${isPage ? '/pages' : ''}/{{dashCase name}}${
+        template: `@use './containers${isPage ? '/pages' : ''}/{{dashCase name}}${
           isPage ? '-page' : ''
         }';`,
       },
@@ -199,7 +199,7 @@ module.exports = async (plop) => {
             type: 'append',
             path: `${rootDirectory}/scss/_components.scss`,
             pattern: `/* PLOP_INJECT_IMPORT */`,
-            template: `@import './components/{{dashCase name}}';`,
+            template: `@use './components/{{dashCase name}}';`,
           },
           {
             type: 'eslint',
