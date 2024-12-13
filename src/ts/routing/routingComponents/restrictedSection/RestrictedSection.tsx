@@ -1,6 +1,7 @@
-//interfaces
+import { JSX } from 'react';
+// interfaces
 import { RestrictedRouteInterface } from '../../RoutingInterfaces';
-//components
+// components
 import RestrictedWrapper from '@/ts/routing/routingComponents/restrictedWrapper/RestrictedWrapper';
 
 const RestrictedSection = ({

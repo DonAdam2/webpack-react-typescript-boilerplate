@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 //routes
 import { getLoginPageUrl } from '../../routingConstants/AppUrls';
