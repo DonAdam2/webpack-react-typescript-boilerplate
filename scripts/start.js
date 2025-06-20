@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-
 //the following required to start the dev server
 const Webpack = require('webpack'),
   WebpackDevServer = require('webpack-dev-server'),
