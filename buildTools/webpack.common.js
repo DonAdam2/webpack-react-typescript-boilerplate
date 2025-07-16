@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin'),
   path = require('path'),
   //plugins
