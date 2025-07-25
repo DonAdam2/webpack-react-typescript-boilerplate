@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-
 const { isCssModules, rootDirectory, buildToolsDirectory } = require('./buildTools/constants'),
   fs = require('fs');
 
@@ -21,8 +19,7 @@ const startsWithUseKeyWord = () => {
   };
 };
 
-const isStoreEntityExist = (entityName) =>
-  fs.existsSync(`./${rootDirectory}/ts/store/${entityName}`);
+const isStoreEntityExist = (entityName) => fs.existsSync(`./${rootDirectory}/store/${entityName}`);
 
 const createQuestion = (type) => {
   const isReducer = type === 'reducer',
@@ -57,81 +54,39 @@ const createQuestion = (type) => {
   }
 };
 
-const generateContainerOrPage = (isPage = false) => {
+const generatePage = () => {
   let actionsList = [
     {
       type: 'add',
-      path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
-        isPage ? 'Page' : ''
-      }/{{pascalCase name}}${isPage ? 'Page' : ''}.tsx`,
-      templateFile: `generatorTemplates${isPage ? '/page/Page' : '/component/Component'}.js.hbs`,
+      path: `${rootDirectory}/pages/{{camelCase name}}Page/{{pascalCase name}}Page.tsx`,
+      templateFile: 'generatorTemplates/page/Page.js.hbs',
       data: { isCssModules },
     },
     {
-      type: 'eslint',
-      path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
-        isPage ? 'Page' : ''
-      }/{{pascalCase name}}${isPage ? 'Page' : ''}.tsx`,
-    },
-    {
       type: 'add',
-      path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
-        isPage ? 'Page' : ''
-      }/{{pascalCase name}}${isPage ? 'Page' : ''}.test.tsx`,
-      templateFile: `generatorTemplates${
-        isPage ? '/page/Page' : '/component/Component'
-      }.test.js.hbs`,
-    },
-    {
-      type: 'eslint',
-      path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
-        isPage ? 'Page' : ''
-      }/{{pascalCase name}}${isPage ? 'Page' : ''}.test.tsx`,
+      path: `${rootDirectory}/pages/{{camelCase name}}Page/{{pascalCase name}}Page.test.tsx`,
+      templateFile: `generatorTemplates/page/Page.test.js.hbs`,
     },
   ];
 
   if (isCssModules) {
-    actionsList.push(
-      {
-        type: 'add',
-        path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
-          isPage ? 'Page' : ''
-        }/{{pascalCase name}}${isPage ? 'Page' : ''}.scss`,
-        templateFile: 'generatorTemplates/component/Component.scss.hbs',
-      },
-      {
-        type: 'eslint',
-        path: `${rootDirectory}/ts/containers${isPage ? '/pages' : ''}/{{camelCase name}}${
-          isPage ? 'Page' : ''
-        }/{{pascalCase name}}${isPage ? 'Page' : ''}.scss`,
-      }
-    );
+    actionsList.push({
+      type: 'add',
+      path: `${rootDirectory}/pages/{{camelCase name}}Page/{{pascalCase name}}Page.scss`,
+      templateFile: 'generatorTemplates/component/Component.scss.hbs',
+    });
   } else {
     actionsList.push(
       {
         type: 'add',
-        path: `${rootDirectory}/scss/containers${isPage ? '/pages' : ''}/_{{dashCase name}}${
-          isPage ? '-page' : ''
-        }.scss`,
+        path: `${rootDirectory}/scss/pages/_{{dashCase name}}-page.scss`,
         templateFile: 'generatorTemplates/component/Component.scss.hbs',
       },
       {
-        type: 'eslint',
-        path: `${rootDirectory}/scss/containers${isPage ? '/pages' : ''}/_{{dashCase name}}${
-          isPage ? '-page' : ''
-        }.scss`,
-      },
-      {
         type: 'append',
-        path: `${rootDirectory}/scss/_containers.scss`,
+        path: `${rootDirectory}/scss/_pages.scss`,
         pattern: `/* PLOP_INJECT_IMPORT */`,
-        template: `@use './containers${isPage ? '/pages' : ''}/{{dashCase name}}${
-          isPage ? '-page' : ''
-        }';`,
-      },
-      {
-        type: 'eslint',
-        path: `${rootDirectory}/scss/_containers.scss`,
+        template: `@use './pages/{{dashCase name}}-page';`,
       }
     );
   }
@@ -152,38 +107,24 @@ module.exports = async (plop) => {
           // Add a new file
           type: 'add',
           // Path for the new file
-          path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.tsx`,
+          path: `${rootDirectory}/components/{{camelCase name}}/{{pascalCase name}}.tsx`,
           // Handlebars template used to generate content of new file
           templateFile: 'generatorTemplates/component/Component.js.hbs',
           data: { isCssModules },
         },
         {
-          type: 'eslint',
-          path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.tsx`,
-        },
-        {
           type: 'add',
-          path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.test.tsx`,
+          path: `${rootDirectory}/components/{{camelCase name}}/{{pascalCase name}}.test.tsx`,
           templateFile: 'generatorTemplates/component/Component.test.js.hbs',
-        },
-        {
-          type: 'eslint',
-          path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.test.tsx`,
         },
       ];
 
       if (isCssModules) {
-        actionsList.push(
-          {
-            type: 'add',
-            path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
-            templateFile: 'generatorTemplates/component/Component.scss.hbs',
-          },
-          {
-            type: 'eslint',
-            path: `${rootDirectory}/ts/components/{{camelCase name}}/{{pascalCase name}}.scss`,
-          }
-        );
+        actionsList.push({
+          type: 'add',
+          path: `${rootDirectory}/components/{{camelCase name}}/{{pascalCase name}}.scss`,
+          templateFile: 'generatorTemplates/component/Component.scss.hbs',
+        });
       } else {
         actionsList.push(
           {
@@ -192,18 +133,10 @@ module.exports = async (plop) => {
             templateFile: 'generatorTemplates/component/Component.scss.hbs',
           },
           {
-            type: 'eslint',
-            path: `${rootDirectory}/scss/components/_{{dashCase name}}.scss`,
-          },
-          {
             type: 'append',
             path: `${rootDirectory}/scss/_components.scss`,
             pattern: `/* PLOP_INJECT_IMPORT */`,
             template: `@use './components/{{dashCase name}}';`,
-          },
-          {
-            type: 'eslint',
-            path: `${rootDirectory}/scss/_components.scss`,
           }
         );
       }
@@ -215,13 +148,7 @@ module.exports = async (plop) => {
   plop.setGenerator('page', {
     description: 'Create a page',
     prompts: [createQuestion('page')],
-    actions: generateContainerOrPage(true),
-  });
-
-  plop.setGenerator('container', {
-    description: 'Create a container',
-    prompts: [createQuestion('container')],
-    actions: generateContainerOrPage(),
+    actions: generatePage(),
   });
 
   plop.setGenerator('hook', {
@@ -230,12 +157,8 @@ module.exports = async (plop) => {
     actions: [
       {
         type: 'add',
-        path: `${rootDirectory}/ts/customHooks/{{camelCase name}}.ts`,
+        path: `${rootDirectory}/hooks/{{camelCase name}}.ts`,
         templateFile: 'generatorTemplates/hook.js.hbs',
-      },
-      {
-        type: 'eslint',
-        path: `${rootDirectory}/ts/customHooks/{{camelCase name}}.ts`,
       },
     ],
   });
@@ -246,22 +169,14 @@ module.exports = async (plop) => {
     actions: [
       {
         type: 'add',
-        path: `${rootDirectory}/ts/services/{{pascalCase name}}Service.ts`,
+        path: `${rootDirectory}/services/{{pascalCase name}}Service.ts`,
         templateFile: 'generatorTemplates/service/Service.js.hbs',
       },
       {
-        type: 'eslint',
-        path: `${rootDirectory}/ts/services/{{pascalCase name}}Service.ts`,
-      },
-      {
         type: 'add',
-        path: `${rootDirectory}/ts/services/HttpService.ts`,
+        path: `${rootDirectory}/services/HttpService.ts`,
         templateFile: 'generatorTemplates/service/HttpService.js.hbs',
         skipIfExists: true,
-      },
-      {
-        type: 'eslint',
-        path: `${rootDirectory}/ts/services/HttpService.ts`,
       },
     ],
   });
@@ -273,70 +188,46 @@ module.exports = async (plop) => {
       let actionsList = [
         {
           type: 'add',
-          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/slices/{{pascalCase name}}Slice.ts`,
+          path: `${rootDirectory}/store/{{camelCase reducerEntity}}/slices/{{pascalCase name}}Slice.ts`,
           templateFile: 'generatorTemplates/reducer/Slice.js.hbs',
         },
         {
-          type: 'eslint',
-          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/slices/{{pascalCase name}}Slice.ts`,
-        },
-        {
           type: 'add',
-          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
+          path: `${rootDirectory}/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
           templateFile: 'generatorTemplates/reducer/Selectors.js.hbs',
         },
         {
-          type: 'eslint',
-          path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/selectors/{{pascalCase name}}Selectors.ts`,
-        },
-        {
           type: 'append',
-          path: `${rootDirectory}/ts/store/reduxSlices.ts`,
+          path: `${rootDirectory}/store/reduxSlices.ts`,
           pattern: `/* PLOP_INJECT_IMPORT */`,
           template: `import {{camelCase name}} from './{{camelCase reducerEntity}}/slices/{{pascalCase name}}Slice';`,
         },
         {
           type: 'append',
-          path: `${rootDirectory}/ts/store/reduxSlices.ts`,
+          path: `${rootDirectory}/store/reduxSlices.ts`,
           pattern: `/* PLOP_INJECT_REDUCER_SLICE */`,
           template: `{{camelCase name}},`,
-        },
-        {
-          type: 'eslint',
-          path: `${rootDirectory}/ts/store/reduxSlices.ts`,
         },
       ];
 
       //if store entity (directory) exists
       if (isStoreEntityExist(data.reducerEntity)) {
-        actionsList.push(
-          {
-            type: 'append',
-            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
-            pattern: `/* PLOP_INJECT_REDUCER_INTERFACE */`,
-            template: `
+        actionsList.push({
+          type: 'append',
+          path: `${rootDirectory}/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
+          pattern: `/* PLOP_INJECT_REDUCER_INTERFACE */`,
+          template: `
 						export interface {{pascalCase name}}SliceInitialState {
 							testString: string;
 						}
 						`,
-          },
-          {
-            type: 'eslint',
-            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
-          }
-        );
+        });
       } else {
-        actionsList.push(
-          {
-            type: 'add',
-            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
-            templateFile: 'generatorTemplates/reducer/EntityInterfaces.js.hbs',
-          },
-          {
-            type: 'eslint',
-            path: `${rootDirectory}/ts/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
-          }
-        );
+        actionsList.push({
+          type: 'add',
+          path: `${rootDirectory}/store/{{camelCase reducerEntity}}/{{pascalCase reducerEntity}}EntityInterfaces.ts`,
+          templateFile: 'generatorTemplates/reducer/EntityInterfaces.js.hbs',
+        });
       }
 
       return actionsList;
@@ -356,17 +247,9 @@ module.exports = async (plop) => {
         templateFile: 'generatorTemplates/progressiveWebApp/swSource.ts.hbs',
       },
       {
-        type: 'eslint',
-        path: `${rootDirectory}/serviceWorker/swSource.ts`,
-      },
-      {
         type: 'add',
         path: `${rootDirectory}/serviceWorker/swRegistration.ts`,
         templateFile: 'generatorTemplates/progressiveWebApp/swRegistration.ts.hbs',
-      },
-      {
-        type: 'eslint',
-        path: `${rootDirectory}/serviceWorker/swRegistration.ts`,
       },
       {
         type: 'append',
@@ -379,10 +262,6 @@ module.exports = async (plop) => {
         path: `${rootDirectory}/index.tsx`,
         pattern: `/* PLOP_INJECT_PWA_REGISTERER */`,
         template: `registerServiceWorker();`,
-      },
-      {
-        type: 'eslint',
-        path: `${rootDirectory}/index.tsx`,
       },
       {
         type: 'append',
@@ -453,10 +332,6 @@ module.exports = async (plop) => {
           //this is the output name of your service worker file
           swDest: 'serviceWorker.js',
         }),`,
-      },
-      {
-        type: 'eslint',
-        path: `${buildToolsDirectory}/webpack.prod.js`,
       },
     ],
   });

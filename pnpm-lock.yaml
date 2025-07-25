@@ -201,9 +201,6 @@ importers:
       plop:
         specifier: 4.0.1
         version: 4.0.1
-      plop-action-eslint:
-        specifier: 1.1.0
-        version: 1.1.0(eslint@9.31.0(jiti@1.21.7))(plop@4.0.1)
       postcss:
         specifier: 8.5.6
         version: 8.5.6
@@ -4956,13 +4953,6 @@ packages:
   pkg-dir@5.0.0:
     resolution: {integrity: sha512-NPE8TDbzl/3YQYY7CSS228s3g2ollTFnc+Qi3tqmqJp9Vg2ovUpixcJEo2HJScN2Ez+kEaal6y70c0ehqJBJeA==}
     engines: {node: '>=10'}
-
-  plop-action-eslint@1.1.0:
-    resolution: {integrity: sha512-A2XCdRBuqalLveRCsWP8Zli5qA+oVVtkL9vcEVZTVDX10fZNvEPVBH1PqvQCxBuqn9GwjY+RbEh2s4TF7fHSuA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      eslint: ^8.19.0
-      plop: ^3.1.2 || ^4.0.0
 
   plop@4.0.1:
     resolution: {integrity: sha512-5n8QU93kvL/ObOzBcPAB1siVFtAH1TZM6TntJ3JK5kXT0jIgnQV+j+uaOWWFJlg1cNkzLYm8klgASF65K36q9w==}
@@ -12081,12 +12071,6 @@ snapshots:
   pkg-dir@5.0.0:
     dependencies:
       find-up: 5.0.0
-
-  plop-action-eslint@1.1.0(eslint@9.31.0(jiti@1.21.7))(plop@4.0.1):
-    dependencies:
-      eslint: 9.31.0(jiti@1.21.7)
-      plop: 4.0.1
-      tslib: 2.8.1
 
   plop@4.0.1:
     dependencies:

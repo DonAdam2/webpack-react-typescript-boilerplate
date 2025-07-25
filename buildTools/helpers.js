@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-
 const fs = require('fs'),
   path = require('path'),
   //the following module is used to generate incremental IDs for every entry
