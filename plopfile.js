@@ -95,8 +95,6 @@ const generatePage = () => {
 };
 
 module.exports = async (plop) => {
-  await plop.load('plop-action-eslint');
-
   plop.setGenerator('component', {
     description: 'Create a component',
     // User input prompts provided as arguments to the template
