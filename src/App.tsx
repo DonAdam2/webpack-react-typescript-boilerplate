@@ -2,10 +2,10 @@ import { lazy, Suspense } from 'react';
 //error boundary
 import { ErrorBoundary } from 'react-error-boundary';
 //error boundary fallback
-import ErrorBoundaryFallback from './ts/generic/ErrorBoundaryFallback';
+import ErrorBoundaryFallback from '@/components/errorBoundaryFallback/ErrorBoundaryFallback';
 //components
-import LoadingIcon from './ts/components/shared/LoadingIcon';
-const TestComponent = lazy(() => import('./ts/containers/testComponent/TestComponent'));
+import LoadingIcon from './components/shared/LoadingIcon';
+const TestComponent = lazy(() => import('@/components/testComponent/TestComponent'));
 
 const App = () => (
   <ErrorBoundary

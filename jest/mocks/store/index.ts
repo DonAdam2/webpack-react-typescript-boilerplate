@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 //root reducer
-import { reduxSlices } from '@/ts/store/reduxSlices';
+import { reduxSlices } from '@/store/reduxSlices';
 //root state
-import { RootState } from '@/ts/store/store';
+import { RootState } from '@/store/store';
 //interfaces
 import { DeepPartial } from '@/jest/interfaces/JestInterfaces';
 

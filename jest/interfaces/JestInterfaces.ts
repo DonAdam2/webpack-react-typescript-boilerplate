@@ -1,6 +1,6 @@
 import { RenderOptions } from '@testing-library/react';
 //root state
-import { RootState } from '@/ts/store/store';
+import { RootState } from '@/store/store';
 //mock store
 import setupStore from '../mocks/store';
 

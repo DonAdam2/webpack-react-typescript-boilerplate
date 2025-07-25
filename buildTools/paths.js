@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-
 const {
     outputDirectory,
     rootDirectory,
@@ -12,8 +10,16 @@ const {
 module.exports = {
   srcPath: resolveApp(rootDirectory),
   appIndexPath: resolveApp(`${rootDirectory}/index`),
-  tsDirectoryPath: resolveApp(`${rootDirectory}/ts`),
-  stylesDirectoryPath: resolveApp(`${rootDirectory}/scss`),
+  assetsDirPath: resolveApp(`${rootDirectory}/assets`),
+  constantsDirPath: resolveApp(`${rootDirectory}/constants`),
+  managersDirPath: resolveApp(`${rootDirectory}/managers`),
+  routingDirPath: resolveApp(`${rootDirectory}/routing`),
+  storeDirPath: resolveApp(`${rootDirectory}/store`),
+  servicesDirPath: resolveApp(`${rootDirectory}/services`),
+  hooksDirPath: resolveApp(`${rootDirectory}/hooks`),
+  pagesDirPath: resolveApp(`${rootDirectory}/pages`),
+  componentsDirPath: resolveApp(`${rootDirectory}/components`),
+  stylesDirPath: resolveApp(`${rootDirectory}/scss`),
   swSourcePath: resolveApp(`${rootDirectory}/serviceWorker/swSource`),
   swIconPath: (imageSrc) => resolveApp(`${publicDirectory}/${imageSrc}`),
   publicDirPath: resolveApp(publicDirectory),
