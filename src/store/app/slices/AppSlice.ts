@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-//interfaces
+
 import { AppSliceInitialState } from '@/store/app/AppEntityInterfaces';
 
 const initialState: AppSliceInitialState = {

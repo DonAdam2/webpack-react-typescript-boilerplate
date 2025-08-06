@@ -1,4 +1,3 @@
-//interfaces
 import { RestrictedRouteInterface } from '@/routing/RoutingInterfaces';
 
 const PermissionsCannotAccess = ({ requiredPermissions }: RestrictedRouteInterface) => (

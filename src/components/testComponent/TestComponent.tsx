@@ -1,8 +1,6 @@
-import { useAppDispatch, useAppSelector } from '@/store/store';
-//selectors
 import { getTestAction } from '@/store/app/selectors/AppSelectors';
-//actions
 import { updateTestString } from '@/store/app/slices/AppSlice';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 
 const TestComponent = () => {
   const dispatch = useAppDispatch(),

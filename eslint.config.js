@@ -9,6 +9,7 @@ const path = require('path'),
   prettierConfig = require('eslint-config-prettier'),
   typescriptEslint = require('@typescript-eslint/eslint-plugin'),
   typescriptParser = require('@typescript-eslint/parser'),
+  importPlugin = require('eslint-plugin-import'),
   globals = require('globals');
 
 module.exports = [
@@ -100,6 +101,7 @@ module.exports = [
       'jest-dom': jestDom,
       prettier: prettier,
       '@typescript-eslint': typescriptEslint,
+      import: importPlugin,
     },
     rules: {
       // TypeScript ESLint recommended rules
@@ -133,9 +135,116 @@ module.exports = [
       // Ensure React hooks rules are active
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+
+      // Import ordering rules
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',   // Node.js built-in modules
+            'external',  // npm packages
+            'internal',  // Internal modules (using pathGroups below)
+            'parent',    // Parent directory imports
+            'sibling',   // Sibling directory imports
+            'index',     // Index file imports
+          ],
+          pathGroups: [
+            // React should come first
+            {
+              pattern: 'react',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: 'react/**',
+              group: 'external',
+              position: 'before',
+            },
+            // Internal modules in specified order
+            {
+              pattern: '@/jest/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/store/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/services/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/hooks/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/managers/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/routing/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/pages/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/components/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/constants/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/scss/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/assets/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/public/**',
+              group: 'internal',
+              position: 'before',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['react'],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
     settings: {
-      'import/resolver': 'webpack',
+      'import/resolver': {
+        webpack: {
+          config: path.join(__dirname, 'buildTools/webpack.common.js'),
+        },
+        typescript: {
+          alwaysTryTypes: true,
+          project: path.join(__dirname, 'tsconfig.json'),
+        },
+      },
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
+      'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
       react: {
         version: 'detect',
       },

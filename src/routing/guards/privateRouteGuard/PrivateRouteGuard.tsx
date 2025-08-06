@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
+
 import { useLocation, Navigate } from 'react-router-dom';
-//routes
+
 import { getLoginPageUrl } from '@/routing/routingConstants/AppUrls';
-//constants
+
 import { isAuthenticated } from '@/constants/Helpers';
 
 const PrivateRouteGuard = ({ children }: { children: ReactNode }) => {

@@ -1,7 +1,6 @@
-import { useAppSelector } from '@/store/store';
-//selectors
 import { getAppUserPermissionsList } from '@/store/app/selectors/AppSelectors';
-//interfaces
+import { useAppSelector } from '@/store/store';
+
 import { RestrictedWrapperInterface } from '@/routing/RoutingInterfaces';
 
 const RestrictedWrapper = ({

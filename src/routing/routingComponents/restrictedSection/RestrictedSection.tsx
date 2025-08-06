@@ -1,8 +1,7 @@
 import { JSX } from 'react';
-// interfaces
-import { RestrictedRouteInterface } from '@/routing/RoutingInterfaces';
-// components
+
 import RestrictedWrapper from '@/routing/routingComponents/restrictedWrapper/RestrictedWrapper';
+import { RestrictedRouteInterface } from '@/routing/RoutingInterfaces';
 
 const RestrictedSection = ({
   requiredPermissions,

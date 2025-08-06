@@ -1,8 +1,6 @@
-//constants
-import { decryptData, encryptData } from '@/constants/Helpers';
-
-//managers
 import SharedManager, { AvailableStorages } from '@/managers/SharedManager';
+
+import { decryptData, encryptData } from '@/constants/Helpers';
 
 class LocalStorageManager {
   static setItem(key: string, data: any) {

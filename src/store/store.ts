@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
 import { configureStore } from '@reduxjs/toolkit';
-//root reducer
-import { reduxSlices } from './reduxSlices';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+
+import { reduxSlices } from './reduxSlices';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 

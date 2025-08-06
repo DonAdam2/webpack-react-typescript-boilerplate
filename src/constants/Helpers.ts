@@ -1,6 +1,7 @@
 import CryptoJS from 'crypto-js';
-//managers
+
 import LocalStorageManager from '@/managers/LocalStorageManger';
+
 import { LocalStorageKeys } from '@/constants/Constants';
 
 const secretKey = 'we are the best of the best';
