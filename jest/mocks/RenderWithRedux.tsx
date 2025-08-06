@@ -1,10 +1,10 @@
 import React, { PropsWithChildren, ReactElement, JSX } from 'react';
+
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-//setup store
-import setupStore from '@/jest/mocks/store';
-//interfaces
+
 import { ExtendedRenderOptions } from '@/jest/interfaces/JestInterfaces';
+import setupStore from '@/jest/mocks/store';
 
 function renderWithRedux(
   ui: ReactElement,

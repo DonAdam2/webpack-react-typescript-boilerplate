@@ -1,7 +1,7 @@
 import { RenderOptions } from '@testing-library/react';
-//root state
+
 import { RootState } from '@/store/store';
-//mock store
+
 import setupStore from '../mocks/store';
 
 export type DeepPartial<T> = {

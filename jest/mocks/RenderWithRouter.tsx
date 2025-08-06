@@ -1,6 +1,8 @@
 import React, { PropsWithChildren, ReactElement, JSX } from 'react';
-import { MemoryRouter } from 'react-router-dom';
+
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+
 import { ExtendedRenderOptionsForRouter } from '../interfaces/JestInterfaces';
 
 function renderWithRouter(
