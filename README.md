@@ -22,7 +22,7 @@
 
 - Testing using **jest**, **react-testing-library**
 - **SCSS** preprocessor
-- Autoprefixer for CSS (it supports IE >= 11)
+- Autoprefixer for CSS
 - Hot reloading for **JS** & **CSS** and **redux** store (in development)
 - Prettier (for code format)
 - Docker setup for development
@@ -32,7 +32,7 @@
 
 ## Prerequisites:
 
-- nodeJS > 17.X.X or Docker
+- nodeJS >= 20.X.X or Docker
 
 ## Installing / Getting Started:
 
@@ -125,7 +125,15 @@
 
 ## Available aliases:
 - @/jest => for the jest directory
-- @/ts => for the TS directory
+- @/assets => for the assets directory
+- @/constants => for the constants directory
+- @/managers => for the managers directory
+- @/routing => for the routing directory
+- @/store => for the store directory
+- @/services => for the services directory
+- @/hooks => for the hooks directory
+- @/pages => for the pages directory
+- @/components => for the components directory
 - @/scss => for the SCSS directory
 - @/public => for the public directory, (don't forget to prepend the **tilde** symbol in scss files):
   ```
