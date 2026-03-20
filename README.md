@@ -218,7 +218,10 @@ Update the `pnpm start` script based on your OS:
 
 ## Enable PWA `pnpm generate progressiveWebApp`
 
-- Run the given script to add the required files for progressive web app
+- Run the given script to add the required files for progressive web app:
+  ```
+  pnpm generate progressiveWebApp
+  ```
 - Install the following packages:
 
   ```
