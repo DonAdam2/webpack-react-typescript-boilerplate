@@ -30,7 +30,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es5",
+    "target": "es2018",
     "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": ["src"]
