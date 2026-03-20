@@ -200,13 +200,19 @@ Please keep in mind that environment variables configured using webpack which me
 
 ## Enable HTTPS in development `pnpm start`
 
-Add `set HTTPS=true` to `pnpm start` script => `"start": "set HTTPS=true && node scripts/start.js"`
+Update the `pnpm start` script based on your OS:
+
+- **macOS/Linux** => `"start": "HTTPS=true node scripts/start.js"`
+- **Windows (cmd)** => `"start": "set HTTPS=true && node scripts/start.js"`
 
 <p dir="rtl"><a href="#table-of-contents">Back to top</a></p>
 
 ## Start the development server without opening the app in the browser `pnpm start`
 
-Add `set BROWSER=none` to `pnpm start` script => `"start": "set BROWSER=none && node scripts/start.js"`
+Update the `pnpm start` script based on your OS:
+
+- **macOS/Linux** => `"start": "BROWSER=none node scripts/start.js"`
+- **Windows (cmd)** => `"start": "set BROWSER=none && node scripts/start.js"`
 
 <p dir="rtl"><a href="#table-of-contents">Back to top</a></p>
 
