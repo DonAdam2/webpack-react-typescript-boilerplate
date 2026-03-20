@@ -1,5 +1,6 @@
 const { isCssModules, rootDirectory, buildToolsDirectory } = require('./buildTools/constants'),
-  fs = require('fs');
+  fs = require('fs'),
+  path = require('path');
 
 const requireField = (fieldName) => {
   return (value) => {
@@ -232,9 +233,6 @@ module.exports = async (plop) => {
     },
   });
 
-  const dontCacheBustURLsMatching = /\.[0-9a-f]{8}\./;
-  // exclude = [/\.map$/, /asset-manifest\.json$/, /LICENSE/];
-
   plop.setGenerator('progressiveWebApp', {
     description: 'Add required files for progressive web app',
     prompts: [],
@@ -288,62 +286,17 @@ module.exports = async (plop) => {
         pattern: `/* PLOP_INJECT_PWA_PATH_IMPORTS */`,
         template: 'swSourcePath, swIconPath',
       },
-      {
-        type: 'append',
-        path: `${buildToolsDirectory}/webpack.prod.js`,
-        pattern: `/* PLOP_INJECT_PWA_PLUGINS */`,
-        template: `new WebpackPwaManifest({
-          filename: 'manifest.webmanifest',
-          background_color: '#000000',
-          display: 'standalone',
-          scope: '/',
-          start_url: '/',
-          id: '/',
-          orientation: 'any',
-          name: 'website long name',
-          short_name: 'website short name',
-          description: 'website description',
-          categories: ['technology', 'web'],
-          icons: [
-            {
-              src: swIconPath('assets/images/pwa/icon-192x192.png'),
-              sizes: '192x192',
-              type: 'image/png',
-              purpose: 'maskable',
-              destination: 'assets/images/pwa',
-              ios: true,
-            },
-            {
-              src: swIconPath('assets/images/pwa/icon-256x256.png'),
-              sizes: '256x256',
-              type: 'image/png',
-              destination: 'assets/images/pwa',
-            },
-            {
-              src: swIconPath('assets/images/pwa/icon-384x384.png'),
-              sizes: '384x384',
-              type: 'image/png',
-              destination: 'assets/images/pwa',
-            },
-            {
-              src: swIconPath('assets/images/pwa/icon-512x512.png'),
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any',
-              destination: 'assets/images/pwa',
-            },
-          ],
-        }),
-        new InjectManifest({
-          //this is the source of your service worker setup
-          swSrc: swSourcePath,
-          dontCacheBustURLsMatching: ${dontCacheBustURLsMatching},
-          // Bump up the default maximum size (2mb) to (5mb) that's precached,
-          // to make lazy-loading failure scenarios less likely.
-          maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-          //this is the output name of your service worker file
-          swDest: 'serviceWorker.js',
-        }),`,
+      function () {
+        const filePath = `${buildToolsDirectory}/webpack.prod.js`;
+        const templateContent = fs.readFileSync(
+          path.resolve(__dirname, 'generatorTemplates/progressiveWebApp/pwaPlugins.hbs'),
+          'utf8'
+        );
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+        const marker = '/* PLOP_INJECT_PWA_PLUGINS */';
+        const newContent = fileContent.replace(marker, marker + '\n' + templateContent);
+        fs.writeFileSync(filePath, newContent, 'utf8');
+        return `_+ ${filePath}`;
       },
     ],
   });
