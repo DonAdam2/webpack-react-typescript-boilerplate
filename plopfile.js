@@ -266,7 +266,7 @@ module.exports = async (plop) => {
         path: `${buildToolsDirectory}/webpack.prod.js`,
         pattern: `/* PLOP_INJECT_PWA_IMPORTS */`,
         template: `{ InjectManifest } = require('workbox-webpack-plugin'),
-                   WebpackPwaManifest = require('webpack-pwa-manifest'),`,
+                   WebpackPwaManifest = require('webpack-plugin-pwa-manifest'),`,
       },
       {
         type: 'append',
@@ -323,7 +323,7 @@ module.exports = async (plop) => {
         new InjectManifest({
           //this is the source of your service worker setup
           swSrc: swSourcePath,
-          dontCacheBustURLsMatching: ${dontCacheBustURLsMatching},         
+          dontCacheBustURLsMatching: ${dontCacheBustURLsMatching},
           // Bump up the default maximum size (2mb) to (5mb) that's precached,
           // to make lazy-loading failure scenarios less likely.
           maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
