@@ -160,16 +160,16 @@ module.exports = (env, options) => {
             {
               loader: 'postcss-loader',
               options: {
-                postcssOptions: {
-                  ident: 'postcss',
-                  plugins: [
-                    [
-                      'postcss-preset-env',
-                      {
+                postcssOptions: async () => {
+                  const postcssPresetEnv = (await import('postcss-preset-env')).default;
+                  return {
+                    ident: 'postcss',
+                    plugins: [
+                      postcssPresetEnv({
                         stage: 0,
-                      },
+                      }),
                     ],
-                  ],
+                  };
                 },
                 sourceMap: isDevelopment,
               },
