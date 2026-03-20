@@ -225,7 +225,7 @@ Update the `pnpm start` script based on your OS:
 - Install the following packages:
 
   ```
-  pnpm add -D workbox-webpack-plugin workbox-cacheable-response workbox-core workbox-expiration workbox-precaching workbox-routing workbox-strategies workbox-window webpack-plugin-pwa-manifest
+  pnpm add -D workbox-webpack-plugin workbox-cacheable-response workbox-core workbox-expiration workbox-precaching workbox-routing workbox-strategies workbox-window webpack-pwa-manifest
   ```
 - Add **pwa** directory `/public/assets/images/pwa`, then add your PWA images using the following names:
   - icon_192x192.png

@@ -263,10 +263,24 @@ module.exports = async (plop) => {
       },
       {
         type: 'append',
+        path: 'eslint.config.js',
+        pattern: `/* PLOP_INJECT_PWA_ESLINT_CONFIG */`,
+        template: `// Service worker files
+                  {
+                    files: ['**/serviceWorker/**/*.{ts,tsx}'],
+                    languageOptions: {
+                      globals: {
+                        ...globals.serviceworker,
+                      },
+                    },
+                  },`,
+      },
+      {
+        type: 'append',
         path: `${buildToolsDirectory}/webpack.prod.js`,
         pattern: `/* PLOP_INJECT_PWA_IMPORTS */`,
         template: `{ InjectManifest } = require('workbox-webpack-plugin'),
-                   WebpackPwaManifest = require('webpack-plugin-pwa-manifest'),`,
+                   WebpackPwaManifest = require('webpack-pwa-manifest'),`,
       },
       {
         type: 'append',

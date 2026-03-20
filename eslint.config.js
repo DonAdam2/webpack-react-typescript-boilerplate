@@ -56,6 +56,8 @@ module.exports = [
     },
   },
 
+  /* PLOP_INJECT_PWA_ESLINT_CONFIG */
+
   // TypeScript ESLint recommended
   {
     files: ['**/*.{ts,tsx}'],
@@ -141,12 +143,12 @@ module.exports = [
         'error',
         {
           groups: [
-            'builtin',   // Node.js built-in modules
-            'external',  // npm packages
-            'internal',  // Internal modules (using pathGroups below)
-            'parent',    // Parent directory imports
-            'sibling',   // Sibling directory imports
-            'index',     // Index file imports
+            'builtin', // Node.js built-in modules
+            'external', // npm packages
+            'internal', // Internal modules (using pathGroups below)
+            'parent', // Parent directory imports
+            'sibling', // Sibling directory imports
+            'index', // Index file imports
           ],
           pathGroups: [
             // React should come first
