@@ -1,4 +1,4 @@
-import CryptoJS from 'crypto-js';
+import { AES, Utf8 } from 'crypto-es';
 
 import LocalStorageManager from '@/managers/LocalStorageManger';
 
@@ -17,12 +17,12 @@ export const updateObject = <T extends object, U extends object>(
 export const decodeToken = (token: string) => JSON.parse(atob(token.split('.')[1]));
 
 export const encryptData = (data: any) => {
-  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+  return AES.encrypt(JSON.stringify(data), secretKey).toString();
 };
 
 export const decryptData = (data: any) => {
-  const bytes = CryptoJS.AES.decrypt(data, secretKey);
-  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  const bytes = AES.decrypt(data, secretKey);
+  return JSON.parse(bytes.toString(Utf8));
 };
 
 export const isAuthenticated = () => LocalStorageManager.getItem(LocalStorageKeys.TOKEN);
