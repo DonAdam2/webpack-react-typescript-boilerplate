@@ -248,7 +248,8 @@ module.exports = [
       },
       'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
       react: {
-        version: 'detect',
+        // read the version directly: 'detect' calls context.getFilename(), which ESLint 10 removed
+        version: require('react/package.json').version,
       },
     },
   },
